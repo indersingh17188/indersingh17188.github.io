@@ -248,6 +248,17 @@
     </div>
   </footer>
 
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
+    <button id="lb-close" class="lb-close" aria-label="Close">×</button>
+    <button id="lb-prev" class="lb-btn lb-prev" aria-label="Previous">‹</button>
+    <div class="lb-content">
+      <img id="lb-img" class="lb-img" alt="">
+      <div id="lb-count" class="lb-count"></div>
+      <div id="lb-cap" class="lb-cap"></div>
+    </div>
+    <button id="lb-next" class="lb-btn lb-next" aria-label="Next">›</button>
+  </div>
+
   <script>
     // ======== EDIT THESE ARRAYS ONLY – the page auto-renders ========
     const PROFILE = {
@@ -636,16 +647,7 @@
     ]
   }
   </script>
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
-    <button id="lb-close" class="lb-close" aria-label="Close">×</button>
-    <button id="lb-prev" class="lb-btn lb-prev" aria-label="Previous">‹</button>
-    <div class="lb-content">
-      <img id="lb-img" class="lb-img" alt="">
-      <div id="lb-count" class="lb-count"></div>
-      <div id="lb-cap" class="lb-cap"></div>
-    </div>
-    <button id="lb-next" class="lb-btn lb-next" aria-label="Next">›</button>
-  </div>
+  
 
 </body>
 </html>
