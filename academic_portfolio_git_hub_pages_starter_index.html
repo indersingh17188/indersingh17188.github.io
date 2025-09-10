@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name – Research & Projects</title>
+  <meta name="description" content="Researcher portfolio: publications, code, projects, outreach, talks, videos, and contact." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📚</text></svg>">
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Your Name – Research & Projects" />
+  <meta property="og:description" content="Publications, code, projects, outreach, talks, and videos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourusername.github.io" />
+  <meta property="og:image" content="https://yourusername.github.io/assets/og-card.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    /* ===== Minimal, clean design with dark-mode support ===== */
+    :root {
+      --bg: #0b0c0f;
+      --panel: #11131a;
+      --text: #e7e9ee;
+      --muted: #a9b0bf;
+      --accent: #60a5fa; /* soft blue */
+      --ok: #34d399;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --card: #0f1218;
+      --border: #1f2430;
+      --code: #0a0c10;
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --panel: #ffffff;
+        --text: #0b1220;
+        --muted: #4b5563;
+        --accent: #2563eb;
+        --card: #ffffff;
+        --border: #e5e7eb;
+        --code: #0f172a;
+        --shadow: 0 10px 25px rgba(2,6,23,.08);
+      }
+    }
+    * { box-sizing: border-box }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem; }
+    .nav {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 92%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
+    .nav a.brand { font-weight: 800; letter-spacing: .3px; }
+    .nav .links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    header.hero { padding: 3.5rem 0 2rem; display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: center; }
+    .avatar { width: 140px; height: 140px; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .intro h1 { margin: 0 0 .5rem; font-size: clamp(1.6rem, 1.2rem + 2vw, 2.25rem); }
+    .intro p { margin: .35rem 0; color: var(--muted); }
+    .badges { margin-top: .75rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .badge { background: var(--panel); border: 1px solid var(--border); color: var(--muted); padding: .25rem .6rem; border-radius: 999px; font-size: .85rem; }
+
+    section { padding: 2.5rem 0; }
+    section h2 { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
+    .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+    .card-inner { padding: 1rem; display: grid; grid-template-columns: 140px 1fr; gap: 1rem; align-items: start; }
+    .thumb { width: 100%; aspect-ratio: 16/10; background: #0b0f19; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .meta { color: var(--muted); font-size: .9rem; }
+    .tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .5rem; }
+    .tag { font-size: .75rem; background: var(--panel); color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: .15rem .5rem; }
+    .actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
+    .btn { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid var(--border); background: var(--panel); padding: .45rem .7rem; border-radius: 10px; font-weight: 600; }
+    .btn svg { width: 16px; height: 16px; }
+
+    /* Responsive */
+    @media (min-width: 640px){ .card { grid-column: span 6; } }
+    @media (min-width: 1024px){ .card { grid-column: span 4; } }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0 3rem; color: var(--muted); text-align: center; }
+    .small { font-size: .9rem; color: var(--muted); }
+
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: .75rem; }
+    .gallery figure { grid-column: span 12; margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @media (min-width: 640px){ .gallery figure { grid-column: span 6; } }
+    @media (min-width: 1024px){ .gallery figure { grid-column: span 4; } }
+
+    /* Video embeds */
+    .video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* Simple section lead */
+    .lead { color: var(--muted); margin: .5rem 0 1rem; }
+
+    /* Skip link */
+    .skip-link { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { position: static; width: auto; height: auto; padding: .5rem; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <nav class="nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <a class="brand" href="#">Your Name</a>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#outreach">Outreach</a>
+        <a href="#gallery">Photos</a>
+        <a href="#videos">Videos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main" class="container">
+    <header class="hero">
+      <div class="avatar"><img id="avatar" src="assets/me.jpg" alt="Portrait of Your Name" loading="eager"></div>
+      <div class="intro">
+        <h1>Your Name</h1>
+        <p>Role @ Institution • Research areas: <strong>Topic A</strong>, <strong>Topic B</strong>, <strong>Topic C</strong></p>
+        <p class="small">GitHub: <a id="gh" href="https://github.com/yourusername">@yourusername</a> · Google Scholar: <a id="scholar" href="#">scholar</a> · LinkedIn: <a id="li" href="#">profile</a>
+        </p>
+        <div class="badges" id="skills"></div>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="lead">Write a short intro (3–5 lines). Focus on impact and what you love working on. Mention cores skills, languages, frameworks, and favorite problems.</p>
+      <p>Example: I’m a researcher/engineer working at the intersection of machine learning and computational imaging. I design fast, reliable models that ship in production. I enjoy building clean, reproducible codebases and mentoring teams.</p>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="lead">Selected papers with links to PDFs, code, datasets, and slides. Add a 1–2 sentence plain-English summary for recruiters.</p>
+      <div class="grid" id="papersGrid"></div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p class="lead">Hands-on projects and repos that demonstrate your skills. Include results, demo links, and a short description of what you built and why it matters.</p>
+      <div class="grid" id="projectsGrid"></div>
+    </section>
+
+    <section id="outreach">
+      <h2>Outreach & Service</h2>
+      <p class="lead">Talks, workshops, mentoring, community events, program committees, teaching, or volunteering.</p>
+      <div class="grid" id="outreachGrid"></div>
+    </section>
+
+    <section id="gallery">
+      <h2>Photos</h2>
+      <p class="lead">A few highlights from conferences, demos, or outreach activities.</p>
+      <div class="gallery" id="galleryGrid"></div>
+    </section>
+
+    <section id="videos">
+      <h2>Videos</h2>
+      <p class="lead">Talks, demos, or media coverage. Use unlisted YouTube/Vimeo if needed.</p>
+      <div class="grid" id="videosGrid"></div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a id="email" href="mailto:you@university.edu">you@university.edu</a> · <a href="#">Download CV (PDF)</a></p>
+      <p class="small">I’m open to roles in research engineering, MLE, and applied science. Feel free to reach out for collaborations.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> Your Name</div>
+      <div class="small">Built with vanilla HTML/CSS/JS. Deployed on GitHub Pages.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ======== EDIT THESE ARRAYS ONLY – the page auto-renders ========
+    const PROFILE = {
+      name: "Your Name",
+      avatar: "assets/me.jpg", // put image file in /assets
+      email: "you@university.edu",
+      github: "yourusername",
+      scholar: "https://scholar.google.com/citations?user=...",
+      linkedin: "https://www.linkedin.com/in/.../",
+      skills: [
+        "Python", "PyTorch", "TensorFlow", "C++", "CUDA", "Docker", "GitLab CI", "Kubernetes", "MLOps"
+      ]
+    };
+
+    // Publications
+    const PAPERS = [
+      {
+        title: "Paper Title One",
+        authors: "Your Name*, Coauthor A, Coauthor B (*equal contribution)",
+        venue: "ICML 2025",
+        year: 2025,
+        teaser: "We introduce a fast, robust training recipe that reduces compute by 40% while improving accuracy on Benchmark X.",
+        pdf: "papers/paper1.pdf",
+        code: "https://github.com/yourusername/paper1-code",
+        project: "https://yourusername.github.io/paper1",
+        image: "assets/paper1.jpg",
+        alt: "Visualization for Paper 1",
+        tags: ["optimization", "robustness", "ml"]
+      },
+      {
+        title: "Paper Title Two",
+        authors: "Your Name, Collaborator C",
+        venue: "NeurIPS 2024 (Spotlight)",
+        year: 2024,
+        teaser: "A simple method for uncertainty calibration that works out-of-the-box for segmentation models.",
+        pdf: "https://arxiv.org/pdf/xxxx.xxxxx",
+        code: "https://github.com/yourusername/ultra-calib",
+        project: "",
+        image: "assets/paper2.jpg",
+        alt: "Segmentation qualitative results",
+        tags: ["uncertainty", "calibration", "vision"]
+      }
+    ];
+
+    // Projects
+    const PROJECTS = [
+      {
+        title: "Realtime Inference on Edge",
+        summary: "Quantized and pruned CNN on ARM microcontrollers achieving 30 FPS with <2W power.",
+        links: { demo: "https://yourusername.github.io/edge-demo", repo: "https://github.com/yourusername/edge-cnn" },
+        image: "assets/edge.jpg", alt: "Edge device demo",
+        tags: ["embedded", "quantization", "pruning"]
+      },
+      {
+        title: "Reproducible ML Template",
+        summary: "Cookiecutter project with Hydra configs, DVC, pre-commit, and GitHub Actions.",
+        links: { repo: "https://github.com/yourusername/ml-template" },
+        image: "assets/template.jpg", alt: "Repo structure screenshot",
+        tags: ["cookiecutter", "mlops", "hydra"]
+      }
+    ];
+
+    // Outreach / Service
+    const OUTREACH = [
+      {
+        title: "Workshop: Intro to Deep Learning",
+        org: "Local University",
+        date: "May 2025",
+        blurb: "Organized a hands-on workshop for 120 students; materials and recordings available.",
+        links: { slides: "assets/workshop-slides.pdf", page: "https://example.com/workshop" },
+        image: "assets/outreach1.jpg", alt: "Photo from the workshop",
+        tags: ["teaching", "community"]
+      },
+      {
+        title: "Program Committee",
+        org: "AwesomeConf 2024",
+        date: "2024",
+        blurb: "Reviewed 14 papers across ML theory and applications.",
+        links: { },
+        image: "assets/pc.jpg", alt: "Conference banner",
+        tags: ["service"]
+      }
+    ];
+
+    // Photo gallery
+    const PHOTOS = [
+      { src: "assets/gallery1.jpg", alt: "Presenting at Conference X" },
+      { src: "assets/gallery2.jpg", alt: "Team at demo day" },
+      { src: "assets/gallery3.jpg", alt: "Outreach event group photo" }
+    ];
+
+    // Videos (YouTube/Vimeo embed URLs)
+    const VIDEOS = [
+      { title: "Talk: Robust Training Tricks", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", caption: "Invited talk, 2025" },
+      { title: "Project Demo", url: "https://player.vimeo.com/video/76979871?h=3e0b2", caption: "Live demo, 2024" }
+    ];
+
+    // ======== RENDERING (no need to edit below) ========
+    const $ = (sel) => document.querySelector(sel);
+    const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
+
+    function icon(name){
+      const paths = {
+        link: '<path d="M10.59 13.41a1.5 1.5 0 0 1 0-2.12l3.88-3.88a1.5 1.5 0 1 1 2.12 2.12l-3.88 3.88a1.5 1.5 0 0 1-2.12 0Z"/><path d="M8.47 15.53a4.5 4.5 0 0 1 0-6.36l2.12-2.12"/><path d="M13.41 10.59a4.5 4.5 0 0 1 0 6.36l-2.12 2.12"/>',
+        file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/>',
+        code: '<path d="m10 18 4-12"/><path d="m7 14-4-4 4-4"/><path d="m17 14 4-4-4-4"/>'
+      };
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths[name]||paths.link}</svg>`;
+    }
+
+    function renderBadges(){
+      const wrap = $("#skills");
+      PROFILE.skills.forEach(s => { const b = el('span','badge'); b.textContent = s; wrap.appendChild(b); });
+    }
+
+    function renderCards(items, gridId, kind){
+      const grid = $(gridId);
+      items.forEach(item => {
+        const card = el('article', 'card');
+        const inner = el('div', 'card-inner');
+
+        const left = el('div');
+        const thumb = el('div', 'thumb');
+        const img = el('img');
+        img.loading = 'lazy';
+        img.src = item.image || 'assets/placeholder.jpg';
+        img.alt = item.alt || item.title || 'thumbnail';
+        thumb.appendChild(img);
+        left.appendChild(thumb);
+
+        const right = el('div');
+        const h3 = el('h3'); h3.textContent = item.title || 'Untitled';
+        right.appendChild(h3);
+
+        const meta = el('div','meta');
+        if (kind==='paper') meta.textContent = `${item.authors} • ${item.venue} • ${item.year}`;
+        if (kind==='outreach') meta.textContent = `${item.org} • ${item.date}`;
+        right.appendChild(meta);
+
+        const p = el('p'); p.textContent = (item.teaser || item.summary || item.blurb || '').trim(); right.appendChild(p);
+
+        const tags = el('div','tags'); (item.tags||[]).forEach(t => { const tt = el('span','tag'); tt.textContent = t; tags.appendChild(tt); }); right.appendChild(tags);
+
+        const actions = el('div','actions');
+        if (kind==='paper'){
+          if (item.pdf){ const a = el('a','btn'); a.href=item.pdf; a.innerHTML=icon('file')+" PDF"; a.target='_blank'; actions.appendChild(a); }
+          if (item.code){ const a = el('a','btn'); a.href=item.code; a.innerHTML=icon('code')+" Code"; a.target='_blank'; actions.appendChild(a); }
+          if (item.project){ const a = el('a','btn'); a.href=item.project; a.innerHTML=icon('link')+" Project"; a.target='_blank'; actions.appendChild(a); }
+        } else if (kind==='project'){
+          const L = item.links||{};
+          if (L.demo){ const a = el('a','btn'); a.href=L.demo; a.innerHTML=icon('link')+" Demo"; a.target='_blank'; actions.appendChild(a); }
+          if (L.repo){ const a = el('a','btn'); a.href=L.repo; a.innerHTML=icon('code')+" Repo"; a.target='_blank'; actions.appendChild(a); }
+        } else if (kind==='outreach'){
+          const L = item.links||{};
+          if (L.page){ const a = el('a','btn'); a.href=L.page; a.innerHTML=icon('link')+" Link"; a.target='_blank'; actions.appendChild(a); }
+          if (L.slides){ const a = el('a','btn'); a.href=L.slides; a.innerHTML=icon('file')+" Slides"; a.target='_blank'; actions.appendChild(a); }
+        }
+        right.appendChild(actions);
+
+        inner.appendChild(left); inner.appendChild(right);
+        card.appendChild(inner);
+        grid.appendChild(card);
+      });
+    }
+
+    function renderGallery(){
+      const grid = document.querySelector('#galleryGrid');
+      PHOTOS.forEach(ph => {
+        const fig = el('figure');
+        const img = el('img'); img.loading = 'lazy'; img.src = ph.src; img.alt = ph.alt||''; fig.appendChild(img);
+        grid.appendChild(fig);
+      })
+    }
+
+    function renderVideos(){
+      const grid = document.querySelector('#videosGrid');
+      VIDEOS.forEach(v => {
+        const wrap = el('div','card');
+        const inner = el('div','card-inner');
+        inner.style.gridTemplateColumns = '1fr';
+        const title = el('h3'); title.textContent = v.title; inner.appendChild(title);
+        const frame = el('div','video');
+        frame.innerHTML = `<iframe src="${v.url}" title="${v.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        inner.appendChild(frame);
+        const cap = el('div','meta'); cap.textContent = v.caption||''; inner.appendChild(cap);
+        wrap.appendChild(inner); grid.appendChild(wrap);
+      });
+    }
+
+    function hydrateProfile(){
+      document.title = `${PROFILE.name} – Research & Projects`;
+      document.querySelector('meta[name="description"]').setAttribute('content', `${PROFILE.name} – publications, projects, code, outreach, and contact.`)
+      document.querySelector('meta[property="og:title"]').setAttribute('content', `${PROFILE.name} – Research & Projects`)
+      document.getElementById('avatar').src = PROFILE.avatar;
+      document.getElementById('avatar').alt = `Portrait of ${PROFILE.name}`;
+      document.getElementById('email').href = `mailto:${PROFILE.email}`;
+      document.getElementById('email').textContent = PROFILE.email;
+      document.getElementById('gh').href = `https://github.com/${PROFILE.github}`;
+      document.getElementById('gh').textContent = `@${PROFILE.github}`;
+      document.getElementById('scholar').href = PROFILE.scholar;
+      document.getElementById('li').href = PROFILE.linkedin;
+    }
+
+    function init(){
+      hydrateProfile();
+      renderBadges();
+      renderCards(PAPERS, '#papersGrid', 'paper');
+      renderCards(PROJECTS, '#projectsGrid', 'project');
+      renderCards(OUTREACH, '#outreachGrid', 'outreach');
+      renderGallery();
+      renderVideos();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }
+
+    init();
+  </script>
+
+  <!-- Optional: Google Analytics (replace G-XXXX) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXX');
+  </script>
+  -->
+
+  <!-- SEO: Structured data for Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "url": "https://yourusername.github.io",
+    "jobTitle": "Researcher / Engineer",
+    "affiliation": {"@type":"Organization","name":"Your Institution"},
+    "email": "mailto:you@university.edu",
+    "sameAs": [
+      "https://github.com/yourusername",
+      "https://scholar.google.com/citations?user=...",
+      "https://www.linkedin.com/in/.../"
+    ]
+  }
+  </script>
+</body>
+</html>
