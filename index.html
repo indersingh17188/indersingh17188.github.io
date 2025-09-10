@@ -54,6 +54,23 @@
       background: color-mix(in oklab, var(--bg) 92%, transparent);
       border-bottom: 1px solid var(--border);
     }
+    /* Publication meta row with right-aligned venue logo */
+    .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem;
+    }
+    .venue-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 2px;
+      object-fit: contain;
+      box-shadow: var(--shadow);
+    }
     .nav-inner { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
     .nav a.brand { font-weight: 800; letter-spacing: .3px; }
     .nav .links { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -225,12 +242,14 @@
         pdf: "https://orbilu.uni.lu/bitstream/10993/49421/1/AAAI_IML_GCN__Camera_ready_.pdf",
         code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
-        image: "media/photos/iml_gcn_arch.png",
+        image: "media/photos/arch_iml_gcn.jpg",
         alt: "Visualization for Paper 1",
-        tags: ["representation-learning", "gcn", "gnn", "cnn"]
+        tags: ["representation-learning", "gcn", "gnn", "cnn"],
+        logo: "media/logos/aaai2022.png",
+        venueUrl: "https://aaai.org/conference/aaai/aaai-22/"
       },
       {
-        title: "MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS (ML-AGCN)",
+        title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS.",
         authors: "Inder Pal Singh et al.",
         venue: "IEEE ICIP",
         year: 2022,
@@ -238,7 +257,7 @@
         pdf: "https://orbilu.uni.lu/bitstream/10993/51776/1/ML_AGCN_Camera_Ready_ICIP_2022_InderPalSingh.pdf",
         code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
-        image: "media/photos/ml_agcn_graphs.png",
+        image: "media/photos/arch_ml_agcn.jpg",
         alt: "Segmentation qualitative results",
         tags: ["adaptive-graphs", "graph-attention", "GAT", "GCN", "CNN"]
       }
@@ -358,10 +377,29 @@
         const h3 = el('h3'); h3.textContent = item.title || 'Untitled';
         right.appendChild(h3);
 
-        const meta = el('div','meta');
-        if (kind==='paper') meta.textContent = `${item.authors} • ${item.venue} • ${item.year}`;
-        if (kind==='outreach') meta.textContent = `${item.org} • ${item.date}`;
-        right.appendChild(meta);
+        // --- meta row with optional venue logo on the right
+        const metaRow = el('div', 'meta-row');
+        const metaLeft = el('div', 'meta');
+
+        if (kind === 'paper') {
+          metaLeft.textContent = `${item.authors} • ${item.venue} • ${item.year}`;
+          // optional venue logo
+          if (item.logo) {
+            const logoWrap = item.venueUrl ? el('a') : el('div');
+            if (item.venueUrl) { logoWrap.href = item.venueUrl; logoWrap.target = '_blank'; }
+            const logo = el('img', 'venue-logo');
+            logo.src = item.logo;
+            logo.alt = `${item.venue || 'Venue'} logo`;
+            logo.loading = 'lazy';
+            logoWrap.appendChild(logo);
+            metaRow.appendChild(logoWrap);
+              }
+            } else if (kind === 'outreach') {
+              metaLeft.textContent = `${item.org} • ${item.date}`;
+            }
+
+          metaRow.prepend(metaLeft);
+          right.appendChild(metaRow);
 
         const p = el('p'); p.textContent = (item.teaser || item.summary || item.blurb || '').trim(); right.appendChild(p);
 
