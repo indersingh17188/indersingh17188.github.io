@@ -62,8 +62,8 @@
       gap: .5rem;
     }
     .venue-logo {
-      width: 28px;
-      height: 28px;
+      width: 38;
+      height: 38;
       border-radius: 6px;
       border: 1px solid var(--border);
       background: var(--panel);
@@ -71,6 +71,40 @@
       object-fit: contain;
       box-shadow: var(--shadow);
     }
+    /* --- Lightbox gallery --- */
+    .lightbox {
+      position: fixed; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      background: rgba(0,0,0,.65); z-index: 1000; padding: 1rem;
+    }
+    .lightbox.open { display: flex; }
+    .lb-content { position: relative; max-width: 95vw; max-height: 90vh; }
+    .lb-img { width: 100%; height: auto; display: block;
+      border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .lb-cap { color: var(--text); text-align: center; margin-top: .5rem; opacity: .95; font-size: .95rem; }
+    .lb-count { position: absolute; right: .5rem; top: .5rem; font-size: .85rem;
+      background: color-mix(in oklab, var(--panel) 85%, transparent);
+      padding: .2rem .45rem; border-radius: 8px; border: 1px solid var(--border); color: var(--text);
+    }
+    .lb-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 999px;
+      border: 1px solid var(--border); background: color-mix(in oklab, var(--panel) 85%, transparent);
+      color: var(--text); font-size: 24px; line-height: 0; display: grid; place-items: center; cursor: pointer;
+    }
+    .lb-prev { left: .5rem; }
+    .lb-next { right: .5rem; }
+    .lb-close {
+      position: absolute; top: .5rem; left: .5rem;
+      width: 38px; height: 38px; border-radius: 999px; cursor: pointer;
+      border: 1px solid var(--border); background: color-mix(in oklab, var(--panel) 85%, transparent);
+      color: var(--text); font-size: 22px; display: grid; place-items: center;
+    }
+
+    /* nicer cursor on thumbnails */
+    .thumb img { cursor: zoom-in; }
+    .lightbox.open .lb-img { cursor: zoom-out; }
+
     .nav-inner { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
     .nav a.brand { font-weight: 800; letter-spacing: .3px; }
     .nav .links { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -242,11 +276,19 @@
         pdf: "https://orbilu.uni.lu/bitstream/10993/49421/1/AAAI_IML_GCN__Camera_ready_.pdf",
         code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
-        image: "media/photos/arch_iml_gcn.jpg",
+        image: "media/photos/iml_gcn/arch_iml_gcn.jpg",
         alt: "Visualization for Paper 1",
         tags: ["representation-learning", "gcn", "gnn", "cnn"],
         logo: "media/logos/aaai2022.png",
-        venueUrl: "https://aaai.org/conference/aaai/aaai-22/"
+        venueUrl: "https://aaai.org/conference/aaai/aaai-22/",
+          // NEW: gallery images (shown when user clicks the thumbnail)
+        images: [
+          { src: "media/photos/iml_gcn/arch_iml_gcn.jpg", caption: "Architecture overview" },
+          { src: "media/photos/iml_gcn/iml_gcn1.jpg", caption: "Our proposed image-based embeddings" },
+          { src: "media/photos/iml_gcn/result1.jpg", caption: "Results on MS-COCO" },
+          { src: "media/photos/iml_gcn/result2_iml_gcn.jpg", caption: "Results on VG-500" },
+          { src: "media/photos/iml_gcn/result3_iml_gcn.jpg", caption: "Ablation study" }
+        ]
       },
       {
         title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS.",
@@ -345,6 +387,65 @@
     const $ = (sel) => document.querySelector(sel);
     const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
 
+    // ===== Lightbox / Gallery state =====
+    const GALLERY = { items: [], idx: 0 };
+
+    function renderSlide() {
+      const item = GALLERY.items[GALLERY.idx];
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const count = document.getElementById('lb-count');
+      img.src = item.src;
+      img.alt = item.alt || '';
+      cap.textContent = item.caption || '';
+      count.textContent = `${GALLERY.idx + 1} / ${GALLERY.items.length}`;
+
+      // (nice to have) preload neighbors
+      const next = GALLERY.items[(GALLERY.idx + 1) % GALLERY.items.length]?.src;
+      const prev = GALLERY.items[(GALLERY.idx - 1 + GALLERY.items.length) % GALLERY.items.length]?.src;
+      if (next) { const i = new Image(); i.src = next; }
+      if (prev) { const i = new Image(); i.src = prev; }
+    }
+
+    function openGallery(items, startIndex = 0) {
+      GALLERY.items = items;
+      GALLERY.idx = Math.min(Math.max(startIndex, 0), items.length - 1);
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderSlide();
+    }
+    function closeGallery() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function nextSlide() { GALLERY.idx = (GALLERY.idx + 1) % GALLERY.items.length; renderSlide(); }
+    function prevSlide() { GALLERY.idx = (GALLERY.idx - 1 + GALLERY.items.length) % GALLERY.items.length; renderSlide(); }
+
+    // Wire buttons + keys + basic swipe
+    document.getElementById('lb-close').addEventListener('click', closeGallery);
+    document.getElementById('lb-next').addEventListener('click', nextSlide);
+    document.getElementById('lb-prev').addEventListener('click', prevSlide);
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      // close if clicking backdrop (not buttons/content)
+      if (e.target.id === 'lightbox') closeGallery();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+    // touch swipe
+    let tStartX = null;
+    document.getElementById('lightbox').addEventListener('touchstart', (e) => { tStartX = e.changedTouches[0].screenX; }, { passive: true });
+    document.getElementById('lightbox').addEventListener('touchend', (e) => {
+      if (tStartX == null) return;
+      const dx = e.changedTouches[0].screenX - tStartX;
+      if (Math.abs(dx) > 40) dx < 0 ? nextSlide() : prevSlide();
+      tStartX = null;
+    }, { passive: true });
+
+
     function icon(name){
       const paths = {
         link: '<path d="M10.59 13.41a1.5 1.5 0 0 1 0-2.12l3.88-3.88a1.5 1.5 0 1 1 2.12 2.12l-3.88 3.88a1.5 1.5 0 0 1-2.12 0Z"/><path d="M8.47 15.53a4.5 4.5 0 0 1 0-6.36l2.12-2.12"/><path d="M13.41 10.59a4.5 4.5 0 0 1 0 6.36l-2.12 2.12"/>',
@@ -373,6 +474,34 @@
         img.src = item.image || 'assets/placeholder.jpg';
         img.alt = item.alt || item.title || 'thumbnail';
         thumb.appendChild(img);
+        // --- Click-to-open gallery ---
+        // Build the images array for this item
+        let galleryItems = [];
+        if (Array.isArray(item.images) && item.images.length) {
+          galleryItems = item.images.map(x => ({
+            src: x.src,
+            alt: x.alt || item.title,
+            caption: x.caption || item.title
+          }));
+        } else {
+          // fallback: single image (use imageLarge if present)
+          galleryItems = [{
+            src: item.imageLarge || item.image,
+            alt: item.alt || item.title,
+            caption: item.title
+          }];
+        }
+
+        // Open gallery on click / keyboard
+        const open = () => openGallery(galleryItems, 0);
+        thumb.setAttribute('role', 'button');
+        thumb.tabIndex = 0;
+        thumb.title = 'Click to preview';
+        thumb.addEventListener('click', open);
+        thumb.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
+
         left.appendChild(thumb);
 
         const right = el('div');
@@ -507,5 +636,16 @@
     ]
   }
   </script>
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
+    <button id="lb-close" class="lb-close" aria-label="Close">×</button>
+    <button id="lb-prev" class="lb-btn lb-prev" aria-label="Previous">‹</button>
+    <div class="lb-content">
+      <img id="lb-img" class="lb-img" alt="">
+      <div id="lb-count" class="lb-count"></div>
+      <div id="lb-cap" class="lb-cap"></div>
+    </div>
+    <button id="lb-next" class="lb-btn lb-next" aria-label="Next">›</button>
+  </div>
+
 </body>
 </html>
