@@ -129,7 +129,7 @@
       <div class="avatar"><img id="avatar" src="media/photos/pic.jpg" alt="Portrait of Your Name" loading="eager"></div>
       <div class="intro">
         <h1>Your Name</h1>
-        <p>Role @ Institution • Research areas: <strong>Multi-label</strong>, <strong>Topic B</strong>, <strong>Topic C</strong></p>
+        <p>Research Associate @ University of Luxembourg • Research areas: <strong>Computer vision</strong>, <strong>AI for Space</strong>, <strong>Deepfake</strong>, <strong>FinTech</strong></p>
         <p class="small">GitHub: <a id="gh" href="https://github.com/indersingh17188">@indersingh17188</a> · Google Scholar: <a id="scholar" href="#">scholar</a> · LinkedIn: <a id="li" href="#">profile</a>
         </p>
         <div class="badges" id="skills"></div>
@@ -138,8 +138,18 @@
 
     <section id="about">
       <h2>About</h2>
-      <p class="lead">Write a short intro (3–5 lines). Focus on impact and what you love working on. Mention cores skills, languages, frameworks, and favorite problems.</p>
-      <p>Example: I’m a researcher/engineer working at the intersection of machine learning and computational imaging. I design fast, reliable models that ship in production. I enjoy building clean, reproducible codebases and mentoring teams.</p>
+      <p class="lead">AI researcher/engineer with 14+ years across academia and industry, building vision and LLM systems for space,
+      deepfakes, education, and FinTech: from research to scalable, production-ready deployments.</p>
+      <p>I’m a postdoctoral researcher at the University of Luxembourg working on computer vision and language technologies that
+      span: multi-label scene understanding (natural and earth observation), cross-domain learning, deepfake detection, LLM-powered tooling for education, and
+      AML in FinTech. I combine 6+ years of AI research with 8+ years in data engineering/data science, so I care about both
+      state-of-the-art results and reliable delivery. Recently, I’ve integrated GPT-class models for adaptive teaching and
+      compliance automation, and built spacecraft pose-estimation pipelines using CNNs/Transformers for an ESA-funded project.
+      I enjoy reproducible ML (MLOps, HPC/cloud), clear documentation, and mentoring. Outside the lab, I lecture MS-level
+      courses and contribute to outreach in Luxembourg.</p>
+      <p class="lead">Ph.D. in Computer Science (AI & Vision), University of Luxembourg; M.S. in Computer Vision (Best Student Award),
+      Université de Bourgogne; B.E. in Electronics & Communication. Languages: English (fluent), French (intermediate), Hindi
+      (native).<p>
     </section>
 
     <section id="publications">
@@ -189,55 +199,58 @@
   <script>
     // ======== EDIT THESE ARRAYS ONLY – the page auto-renders ========
     const PROFILE = {
-      name: "Your Name",
-      avatar: "assets/me.jpg", // put image file in /assets
-      email: "you@university.edu",
-      github: "yourusername",
-      scholar: "https://scholar.google.com/citations?user=...",
-      linkedin: "https://www.linkedin.com/in/.../",
+      name: "Dr. Inder Pal SINGH",
+      avatar: "media/photos/pic.jpg", // put image file in /assets
+      email: "indersingh17188@gmail.com",
+      github: "indersingh17188",
+      scholar: "https://scholar.google.com/citations?user=EByNsQ0AAAAJ&hl=en",
+      linkedin: "https://www.linkedin.com/in/dr-inder-pal-singh-05830963/",
       skills: [
-        "Python", "PyTorch", "TensorFlow", "C++", "CUDA", "Docker", "GitLab CI", "Kubernetes", "MLOps"
-      ]
+        "Python", "PyTorch", "TensorFlow", "Scikit-learn",
+        "Computer Vision", "GNNs & CNNs", "Transformers",
+        "LLMs (GPT-4, Mistral)", "RAG",
+        "Docker", "CI/CD", "HPC & Cloud", "SQL"
+        ]
     };
 
     // Publications
     const PAPERS = [
       {
-        title: "Paper Title One",
-        authors: "Your Name*, Coauthor A, Coauthor B (*equal contribution)",
-        venue: "ICML 2025",
-        year: 2025,
-        teaser: "We introduce a fast, robust training recipe that reduces compute by 40% while improving accuracy on Benchmark X.",
-        pdf: "papers/paper1.pdf",
-        code: "https://github.com/yourusername/paper1-code",
-        project: "https://yourusername.github.io/paper1",
-        image: "assets/paper1.jpg",
+        title: "IML-GCN: Improved Multi-Label Graph Convolutional Network for Efficient yet Precise Image Classification",
+        authors: "Inder Pal Singh et al.",
+        venue: "AAAI",
+        year: 2022,
+        teaser: "We model the multi-label relationships using novel image-based embeddings that improved the models's efficiency by approximately 35%.",
+        pdf: "https://orbilu.uni.lu/bitstream/10993/49421/1/AAAI_IML_GCN__Camera_ready_.pdf",
+        code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
+        project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
+        image: "media/photos/iml_gcn_arch.png",
         alt: "Visualization for Paper 1",
-        tags: ["optimization", "robustness", "ml"]
+        tags: ["representation-learning", "gcn", "gnn", "cnn"]
       },
       {
-        title: "Paper Title Two",
-        authors: "Your Name, Collaborator C",
-        venue: "NeurIPS 2024 (Spotlight)",
-        year: 2024,
-        teaser: "A simple method for uncertainty calibration that works out-of-the-box for segmentation models.",
-        pdf: "https://arxiv.org/pdf/xxxx.xxxxx",
-        code: "https://github.com/yourusername/ultra-calib",
-        project: "",
-        image: "assets/paper2.jpg",
+        title: "MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS (ML-AGCN)",
+        authors: "Inder Pal Singh et al.",
+        venue: "IEEE ICIP",
+        year: 2022,
+        teaser: "An adaptive graph learning-based approach to enhance both the efficienct and accuracy for multi-label image classification.",
+        pdf: "https://orbilu.uni.lu/bitstream/10993/51776/1/ML_AGCN_Camera_Ready_ICIP_2022_InderPalSingh.pdf",
+        code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
+        project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
+        image: "media/photos/ml_agcn_graphs.png",
         alt: "Segmentation qualitative results",
-        tags: ["uncertainty", "calibration", "vision"]
+        tags: ["adaptive-graphs", "graph-attention", "GAT", "GCN", "CNN"]
       }
     ];
 
     // Projects
     const PROJECTS = [
       {
-        title: "Realtime Inference on Edge",
-        summary: "Quantized and pruned CNN on ARM microcontrollers achieving 30 FPS with <2W power.",
+        title: "AML Copilot for FinTech (RAG + Automation)",
+        summary: "Built LLM pipelines for automated regulatory reporting and AML support with retrieval over policy/transactional data; hardened prompts and guardrails.",
         links: { demo: "https://yourusername.github.io/edge-demo", repo: "https://github.com/yourusername/edge-cnn" },
         image: "assets/edge.jpg", alt: "Edge device demo",
-        tags: ["embedded", "quantization", "pruning"]
+        tags: ["FinTech", "LLM", "RAG", "AML"]
       },
       {
         title: "Reproducible ML Template",
@@ -250,31 +263,54 @@
 
     // Outreach / Service
     const OUTREACH = [
-      {
-        title: "Workshop: Intro to Deep Learning",
-        org: "Local University",
-        date: "May 2025",
-        blurb: "Organized a hands-on workshop for 120 students; materials and recordings available.",
-        links: { slides: "assets/workshop-slides.pdf", page: "https://example.com/workshop" },
-        image: "assets/outreach1.jpg", alt: "Photo from the workshop",
-        tags: ["teaching", "community"]
+             {
+        title: "Lecturer – AI & Data Science (MSDA)",
+        org: "European Business Institute of Luxembourg",
+        date: "2022 – Present",
+        blurb: "Teach Statistics, Machine Learning, Deep Learning, and NLP; mentor graduate projects.",
+        links: { page: "https://ebulux.lu/" },
+        image: "media/photos/EBU.png",
+        alt: "Profile snapshot",
+        tags: ["teaching", "mentoring"]
       },
-      {
-        title: "Program Committee",
-        org: "AwesomeConf 2024",
+       {
+        title: "Smart Schoul 2025",
+        org: "Luxembourg Outreach",
+        date: "2025",
+        blurb: "Hands-on demonstrations introducing AI to students.",
+        links: {page: "https://smartschoul2025.uni.lu/"},
+        image: "media/photos/smart_schoul.jpg",
+        alt: "Smart Schoul",
+        tags: ["outreach", "Digital-Lëtzebuerg"]
+      },
+        {
+        title: "ESCH 2022: Sound of Data",
+        org: "Luxembourg",
+        date: "2022",
+        blurb: "Community event contributions around data and creativity.",
+        links: {page: "https://esch2022.lu/en/cultural-agenda/?project_number=860"},
+        image: "media/photos/sound_of_data.jpg",
+        alt: "Sound of Data",
+        tags: ["outreach", "Esch2022", "science meets music"]
+      },
+        {
+        title: "Asteroid Day 2024",
+        org: "Luxembourg",
         date: "2024",
-        blurb: "Reviewed 14 papers across ML theory and applications.",
-        links: { },
-        image: "assets/pc.jpg", alt: "Conference banner",
-        tags: ["service"]
-      }
+        blurb: "Public engagement on space and data science.",
+        links: {page: "https://asteroidday.org/news-updates/asteroid-day-2024-press-release/"},
+        image: "media/photos/asteroid_day_demo.jpeg",
+        alt: "Our booth at the Asteroid Day",
+        tags: ["space", "community"]
+      },
+
     ];
 
     // Photo gallery
     const PHOTOS = [
-      { src: "assets/gallery1.jpg", alt: "Presenting at Conference X" },
-      { src: "assets/gallery2.jpg", alt: "Team at demo day" },
-      { src: "assets/gallery3.jpg", alt: "Outreach event group photo" }
+      { src: "media/photos/ICIP_presentation.jpg", alt: "Attending and presenting at IEEE ICIP 2022" },
+      { src: "media/photos/mmsp_present.jpg", alt: "Prsenting at IEEE MMSP 2023" },
+      { src: "media/photos/asteriod_day.jpeg", alt: "Group photo with visiting kids during Asteroid day 2024" }
     ];
 
     // Videos (YouTube/Vimeo embed URLs)
