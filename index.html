@@ -343,6 +343,7 @@
       items.forEach(item => {
         const card = el('article', 'card');
         const inner = el('div', 'card-inner');
+        if (kind === 'paper') { inner.style.gridTemplateColumns = '1fr'; }
 
         const left = el('div');
         const thumb = el('div', 'thumb');
