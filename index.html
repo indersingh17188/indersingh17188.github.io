@@ -309,6 +309,7 @@
         year: 2022,
         teaser: "An adaptive graph learning-based approach to enhance both the efficienct and accuracy for multi-label image classification.",
         pdf: "https://orbilu.uni.lu/bitstream/10993/51776/1/ML_AGCN_Camera_Ready_ICIP_2022_InderPalSingh.pdf",
+        poster: "media/photos/ml_agcn/poster.pdf",
         code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         image: "media/photos/arch_ml_agcn.jpg",
@@ -347,7 +348,7 @@
     
     // Videos (YouTube/Vimeo embed URLs)
     const VIDEOS = [
-      { title: "DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification at WACV 2024", url: "https://www.youtube.com/embed/yHCr-St97s", caption: "" },
+      { title: "DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification at WACV 2024", url: "https://www.youtube.com/embed/OyHCr-St97s", caption: "" },
       { title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS", url: "https://www.youtube.com/embed/phwfFfXxV88", caption: "" },
       { title: "IML-GCN: Improved Multi-Label Graph Convolutional Network for Efficient yet Precise Image Classification", url: "https://www.youtube.com/embed/saPsmRHpuis", caption: "" }
 
@@ -580,7 +581,7 @@
         const actions = el('div','actions');
         if (kind==='paper'){
           if (item.pdf){ const a = el('a','btn'); a.href=item.pdf; a.innerHTML=icon('file')+" PDF"; a.target='_blank'; actions.appendChild(a); }
-          if (item.poster) { const a = el('a', 'btn'); a.href = item.pdf; a.innerHTML = icon('file') + " Poster"; a.target = '_blank'; actions.appendChild(a); }
+          if (item.poster) { const a = el('a', 'btn'); a.href = item.poster; a.innerHTML = icon('file') + " Poster"; a.target = '_blank'; actions.appendChild(a); }
           if (item.code){ const a = el('a','btn'); a.href=item.code; a.innerHTML=icon('code')+" Code"; a.target='_blank'; actions.appendChild(a); }
           if (item.project){ const a = el('a','btn'); a.href=item.project; a.innerHTML=icon('link')+" Project"; a.target='_blank'; actions.appendChild(a); }
         } else if (kind==='project'){
