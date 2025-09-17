@@ -285,6 +285,7 @@
         year: 2022,
         teaser: "We model the multi-label relationships using novel image-based embeddings that improved the models's efficiency by approximately 35%.",
         pdf: "https://orbilu.uni.lu/bitstream/10993/49421/1/AAAI_IML_GCN__Camera_ready_.pdf",
+        poster: "media/photos/iml_gcn/poster.pdf",
         code: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         project: "https://gitlab.com/uniluxembourg/snt/cvi2/phd/inder/iml-gcn",
         image: "media/photos/iml_gcn/arch_iml_gcn.jpg",
@@ -346,9 +347,9 @@
     
     // Videos (YouTube/Vimeo embed URLs)
     const VIDEOS = [
-      { title: "DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification at WACV 2024", url: "https://youtu.be/OyHCr-St97s", caption: "" },
-      { title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS", url: "https://youtu.be/phwfFfXxV88", caption: "" },
-      { title: "IML-GCN: Improved Multi-Label Graph Convolutional Network for Efficient yet Precise Image Classification", url: "https://youtu.be/saPsmRHpuis", caption: "" }
+      { title: "DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification at WACV 2024", url: "https://www.youtube.com/embed/yHCr-St97s", caption: "" },
+      { title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS", url: "https://www.youtube.com/embed/phwfFfXxV88", caption: "" },
+      { title: "IML-GCN: Improved Multi-Label Graph Convolutional Network for Efficient yet Precise Image Classification", url: "https://www.youtube.com/embed/saPsmRHpuis", caption: "" }
 
     ];
 
@@ -579,6 +580,7 @@
         const actions = el('div','actions');
         if (kind==='paper'){
           if (item.pdf){ const a = el('a','btn'); a.href=item.pdf; a.innerHTML=icon('file')+" PDF"; a.target='_blank'; actions.appendChild(a); }
+          if (item.poster) { const a = el('a', 'btn'); a.href = item.pdf; a.innerHTML = icon('file') + " Poster"; a.target = '_blank'; actions.appendChild(a); }
           if (item.code){ const a = el('a','btn'); a.href=item.code; a.innerHTML=icon('code')+" Code"; a.target='_blank'; actions.appendChild(a); }
           if (item.project){ const a = el('a','btn'); a.href=item.project; a.innerHTML=icon('link')+" Project"; a.target='_blank'; actions.appendChild(a); }
         } else if (kind==='project'){
