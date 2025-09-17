@@ -210,6 +210,12 @@
       <div class="grid" id="papersGrid"></div>
     </section>
 
+    <section id="videos">
+      <h2>Videos</h2>
+      <!-- <p class="lead">Talks, demos, or media coverage. Use unlisted YouTube/Vimeo if needed.</p> -->
+      <div class="grid" id="videosGrid"></div>
+    </section>
+
     <section id="projects">
       <h2>Projects</h2>
       <!-- <p class="lead">Hands-on projects and repos that demonstrate your skills. Include results, demo links, and a short description of what you built and why it matters.</p> -->
@@ -226,12 +232,6 @@
       <h2>Photos</h2>
       <!-- <p class="lead">A few highlights from conferences, demos, or outreach activities.</p> -->
       <div class="gallery" id="galleryGrid"></div>
-    </section>
-
-    <section id="videos">
-      <h2>Videos</h2>
-      <!-- <p class="lead">Talks, demos, or media coverage. Use unlisted YouTube/Vimeo if needed.</p> -->
-      <div class="grid" id="videosGrid"></div>
     </section>
 
     <section id="contact">
@@ -721,10 +721,10 @@
       hydrateProfile();
       renderBadges();
       renderCards(PAPERS, '#papersGrid', 'paper');
+      renderVideos();
       renderCards(PROJECTS, '#projectsGrid', 'project');
       renderCards(OUTREACH, '#outreachGrid', 'outreach');
       renderGallery();
-      renderVideos();
       document.getElementById('year').textContent = new Date().getFullYear();
     }
 
