@@ -2,936 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dr. Inder Pal SINGH – Research & Projects</title>
-  <meta name="description" content="Researcher portfolio: publications, code, projects, outreach, talks, videos, and contact." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📚</text></svg>">
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Inder Pal SINGH – Research & Projects" />
-  <meta property="og:description" content="Publications, code, projects, outreach, talks, and videos." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dr. Inder Pal Singh | AI Engineer, Data Scientist & Researcher</title>
+  <meta name="description" content="Portfolio of Dr. Inder Pal Singh: AI engineering, data science, computer vision research, XAI, RAG, LLMs, and deployable ML applications." />
+  <meta property="og:title" content="Dr. Inder Pal Singh | AI Engineer, Data Scientist & Researcher" />
+  <meta property="og:description" content="AI engineering portfolio: deployable ML apps, XGBoost/SHAP, RAG, computer vision, domain adaptation, publications and applied AI projects." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://indersingh17188.github.io" />
-  <meta property="og:image" content="https://indersingh17188.github.io/assets/og-card.jpg" />
+  <meta property="og:url" content="https://indersingh17188.github.io/" />
+  <meta property="og:image" content="https://indersingh17188.github.io/media/portfolio/portfolio_positioning.png" />
   <meta name="twitter:card" content="summary_large_image" />
-
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2285%22>🤖</text></svg>">
   <style>
-    /* ===== Minimal, clean design with dark-mode support ===== */
-    :root {
-      --bg: #0b0c0f;
-      --panel: #11131a;
-      --text: #e7e9ee;
-      --muted: #a9b0bf;
-      --accent: #60a5fa; /* soft blue */
-      --ok: #34d399;
-      --warn: #f59e0b;
-      --danger: #ef4444;
-      --card: #0f1218;
-      --border: #1f2430;
-      --code: #0a0c10;
-      --shadow: 0 10px 25px rgba(0,0,0,.35);
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f8fafc;
-        --panel: #ffffff;
-        --text: #0b1220;
-        --muted: #4b5563;
-        --accent: #2563eb;
-        --card: #ffffff;
-        --border: #e5e7eb;
-        --code: #0f172a;
-        --shadow: 0 10px 25px rgba(2,6,23,.08);
-      }
-    }
-    * { box-sizing: border-box }
-    html, body { margin: 0; padding: 0; }
-    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem; }
-    .nav {
-      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(10px);
-      background: color-mix(in oklab, var(--bg) 92%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-    /* Publication meta row with right-aligned venue logo */
-    .meta-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: .5rem;
-    }
-    .venue-logo {
-      width: 50px !important;
-      height: 50px !important;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      padding: 2px;
-      object-fit: contain;
-      box-shadow: var(--shadow);
-    }
-    /* --- Lightbox gallery --- */
-    .lightbox {
-      position: fixed; inset: 0; display: none;
-      align-items: center; justify-content: center;
-      background: rgba(0,0,0,.65); z-index: 1000; padding: 1rem;
-    }
-    .lightbox.open { display: flex; }
-    .lb-content { position: relative; max-width: 95vw; max-height: 90vh; }
-    .lb-img { width: 100%; height: auto; display: block;
-      border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-    .lb-cap { color: var(--text); text-align: center; margin-top: .5rem; opacity: .95; font-size: .95rem; }
-    .lb-count { position: absolute; right: .5rem; top: .5rem; font-size: .85rem;
-      background: color-mix(in oklab, var(--panel) 85%, transparent);
-      padding: .2rem .45rem; border-radius: 8px; border: 1px solid var(--border); color: var(--text);
-    }
-    .lb-btn {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 42px; height: 42px; border-radius: 999px;
-      border: 1px solid var(--border); background: color-mix(in oklab, var(--panel) 85%, transparent);
-      color: var(--text); font-size: 24px; line-height: 0; display: grid; place-items: center; cursor: pointer;
-    }
-    .lb-prev { left: .5rem; }
-    .lb-next { right: .5rem; }
-    .lb-close {
-      position: absolute; top: .5rem; left: .5rem;
-      width: 38px; height: 38px; border-radius: 999px; cursor: pointer;
-      border: 1px solid var(--border); background: color-mix(in oklab, var(--panel) 85%, transparent);
-      color: var(--text); font-size: 22px; display: grid; place-items: center;
-    }
-
-    /* nicer cursor on thumbnails */
-    .thumb img { cursor: zoom-in; }
-    .lightbox.open .lb-img { cursor: zoom-out; }
-
-    .nav-inner { display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
-    .nav a.brand { font-weight: 800; letter-spacing: .3px; }
-    .nav .links { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    header.hero { padding: 3.5rem 0 2rem; display: grid; grid-template-columns: 140px 1fr; gap: 1.5rem; align-items: center; }
-    .avatar { width: 180; height: 180; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .intro h1 { margin: 0 0 .5rem; font-size: clamp(1.6rem, 1.2rem + 2vw, 2.25rem); }
-    .intro p { margin: .35rem 0; color: var(--muted); }
-    .badges { margin-top: .75rem; display: flex; flex-wrap: wrap; gap: .5rem; }
-    .badge { background: var(--panel); border: 1px solid var(--border); color: var(--muted); padding: .25rem .6rem; border-radius: 999px; font-size: .85rem; }
-
-    section { padding: 2.5rem 0; }
-    section h2 { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem); }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
-    .card { grid-column: span 12; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
-    .card-inner { padding: 1rem; display: grid; grid-template-columns: 140px 1fr; gap: 1rem; align-items: start; }
-    .thumb { width: 100%; aspect-ratio: 16/10; background: #0b0f19; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .meta { color: var(--muted); font-size: .9rem; }
-    .tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .5rem; }
-    .tag { font-size: .75rem; background: var(--panel); color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: .15rem .5rem; }
-    .actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .6rem; }
-    .btn { display: inline-flex; align-items: center; gap: .4rem; border: 1px solid var(--border); background: var(--panel); padding: .45rem .7rem; border-radius: 10px; font-weight: 600; }
-    .btn svg { width: 16px; height: 16px; }
-
-    /* Responsive */
-    @media (min-width: 640px){ .card { grid-column: span 6; } }
-    @media (min-width: 1024px){ .card { grid-column: span 4; } }
-
-    /* Footer */
-    footer { border-top: 1px solid var(--border); padding: 2rem 0 3rem; color: var(--muted); text-align: center; }
-    .small { font-size: .9rem; color: var(--muted); }
-
-    /* Gallery */
-    .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: .75rem; }
-    .gallery figure { grid-column: span 12; margin: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
-    .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    @media (min-width: 640px){ .gallery figure { grid-column: span 6; } }
-    @media (min-width: 1024px){ .gallery figure { grid-column: span 4; } }
-
-    /* Video embeds */
-    .video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-    .video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-    /* Simple section lead */
-    .lead { color: var(--muted); margin: .5rem 0 1rem; }
-
-    /* Skip link */
-    .skip-link { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .skip-link:focus { position: static; width: auto; height: auto; padding: .5rem; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; }
+    :root{--bg:#08111f;--panel:#101b2f;--card:#111c31;--text:#eef4ff;--muted:#aab8cf;--soft:#d9e5f5;--line:#23324c;--blue:#60a5fa;--blue2:#2563eb;--cyan:#22d3ee;--green:#34d399;--amber:#f59e0b;--shadow:0 22px 50px rgba(0,0,0,.35);--radius:22px;--max:1180px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;background:radial-gradient(circle at 10% 5%,rgba(37,99,235,.35),transparent 28%),radial-gradient(circle at 90% 0%,rgba(34,211,238,.22),transparent 26%),linear-gradient(180deg,var(--bg),#0a1020 58%,#08111f);color:var(--text);line-height:1.6}
+    a{color:var(--cyan);text-decoration:none} a:hover{text-decoration:underline} img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin:0 auto;padding:0 1.25rem}.muted{color:var(--muted)}
+    .eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:800;margin-bottom:.5rem}
+    .section{padding:5rem 0}.section-title{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.1;margin:.2rem 0 .8rem}.section-lead{color:var(--muted);max-width:780px;margin:0 0 2rem}
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,17,31,.78);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}.brand{font-weight:900;color:var(--text);letter-spacing:.02em}.brand span{color:var(--cyan)}
+    .links{display:flex;gap:.9rem;flex-wrap:wrap;font-size:.93rem}.links a{color:var(--muted)}.links a:hover{color:var(--text);text-decoration:none}
+    .hero{padding:5.3rem 0 3.5rem}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:2rem;align-items:center}
+    .hero h1{font-size:clamp(2.4rem,6vw,5rem);line-height:1;margin:.4rem 0 1rem;letter-spacing:-.05em}.hero .subtitle{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--soft);max-width:790px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1rem;border-radius:999px;font-weight:800;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));color:var(--text);box-shadow:0 10px 25px rgba(0,0,0,.18)}
+    .btn.primary{background:linear-gradient(135deg,var(--blue2),#1d4ed8);border-color:rgba(96,165,250,.45)}.btn:hover{text-decoration:none;transform:translateY(-1px)}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow)}
+    .avatar-wrap{display:flex;gap:1rem;align-items:center;margin-bottom:1rem}.avatar{width:94px;height:94px;border-radius:24px;object-fit:cover;border:1px solid var(--line);background:#0b1220}.quick h3{margin:0;font-size:1.2rem}.quick p{margin:.1rem 0;color:var(--muted);font-size:.95rem}
+    .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.9rem}.signal{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:.85rem}.signal strong{display:block;font-size:1.25rem;color:var(--text)}.signal span{display:block;color:var(--muted);font-size:.86rem}
+    .chips{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.2rem}.chip{padding:.28rem .65rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--muted);background:rgba(255,255,255,.045);font-size:.82rem}
+    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}.role-card,.mini-card,.skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem;box-shadow:var(--shadow)}.role-card h3,.mini-card h3,.skill-card h3{margin:.2rem 0 .4rem}.role-card p,.mini-card p{color:var(--muted);margin:0}.role-icon{font-size:1.8rem}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}.project-card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.11);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}.project-shot{aspect-ratio:16/9;background:#0b1220;overflow:hidden;border-bottom:1px solid var(--line)}.project-shot img{width:100%;height:100%;object-fit:cover}.project-body{padding:1.15rem}.project-body h3{margin:.1rem 0 .45rem;font-size:1.35rem}.project-body p{color:var(--muted);margin:.4rem 0}
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.75rem 0}.tag{font-size:.76rem;padding:.2rem .52rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#cfe2ff;background:rgba(96,165,250,.09)}.project-actions,.pub-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.85rem}
+    .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-top:1.5rem}.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1rem;text-align:center}.step strong{display:block;font-size:.96rem}.step span{display:block;color:var(--muted);font-size:.78rem;margin-top:.25rem}
+    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.skill-card ul{margin:0;padding-left:1.1rem;color:var(--muted)}.skill-card li{margin:.28rem 0}
+    .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.meta{font-size:.9rem;color:var(--cyan)}
+    .pub-list{display:grid;gap:1rem}.pub{display:grid;grid-template-columns:120px 1fr;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1rem}.pub img{border-radius:14px;aspect-ratio:16/10;object-fit:cover;background:#0b1220;border:1px solid var(--line)}.pub h3{margin:.1rem 0 .3rem}.pub p{margin:.2rem 0;color:var(--muted)}
+    .timeline{display:grid;gap:1rem}.timeline-item{display:grid;grid-template-columns:170px 1fr;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1rem}.date{color:var(--cyan);font-weight:800}
+    .contact-box{display:grid;grid-template-columns:1.3fr .7fr;gap:1rem;background:linear-gradient(135deg,rgba(37,99,235,.18),rgba(34,211,238,.09));border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:1.5rem}footer{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);text-align:center}
+    @media(max-width:900px){.hero-grid,.portfolio-grid,.three,.skills-grid,.cards-grid,.contact-box{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr 1fr}.pub{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}}
+    @media(max-width:640px){.links{display:none}.pipeline{grid-template-columns:1fr}.hero{padding-top:3.2rem}}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
-  <nav class="nav" aria-label="Primary">
-    <div class="container nav-inner">
-      <a class="brand" href="#">Home</a>
-      <div class="links">
-        <a href="#about">About</a>
-        <a href="#publications">Publications</a>
-        <a href="#projects">Projects</a>
-        <a href="#outreach">Outreach</a>
-        <a href="#gallery">Photos</a>
-        <a href="#videos">Videos</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <main id="main" class="container">
-    <header class="hero">
-      <div class="avatar"><img id="avatar" src="media/photos/profile_pic_compressed.jpg" alt="Portrait of Your Name" loading="eager"></div>
-      <div class="intro">
-        <h1>Dr. Inder Pal SINGH</h1>
-        <p>Research Associate @ University of Luxembourg • Research areas: <strong>Computer vision</strong>, <strong>AI for Space</strong>, <strong>Deepfake</strong>, <strong>FinTech</strong></p>
-        <p class="small">GitHub: <a id="gh" href="https://github.com/indersingh17188">@indersingh17188</a> · Google Scholar: <a id="scholar" href="#">scholar</a> · LinkedIn: <a id="li" href="#">profile</a>
-        </p>
-        <div class="badges" id="skills"></div>
-      </div>
-    </header>
-
-    <section id="about">
-      <h2>About</h2>
-      <p class="lead">Where research meets engineering and leadership: always precise, always shipping.</p>
-      <!-- <p class="lead">Ph.D. in Computer Science (AI & Vision), University of Luxembourg; M.S. in Computer Vision, Université de Bourgogne; B.E. in Electronics & Communication. Languages: English (fluent), French (intermediate),
-        Hindi (native).<p> -->
-      <p>
-        I am a research enthusiast with an engineering background, working at the intersection of
-        <strong>AI, Machine Learning, Computer Vision, and Natural Language Processing</strong>.
-        My work spans applications in <strong>FinTech, space situational awareness, deepfake detection,
-          earth observation,</strong> and <strong>education</strong>.
-      </p>
-      <p>
-        Currently a <strong>postdoctoral researcher at the University of Luxembourg</strong>, I develop
-        vision and language technologies including <strong>scene understanding, cross-domain learning,
-          deepfake detection,</strong> and <strong>LLM-powered tools</strong>. I also bring industry
-        experience in <strong>project and resource management</strong>, leading technical teams and
-        delivering large-scale network design and OSS engineering projects.
-      </p>
-      <p>
-        I value <strong>scalable AI systems, reproducible ML, clear documentation, and mentorship</strong>,
-        and I contribute to <strong>teaching</strong> and <strong>outreach</strong>.
-      </p>
-
-    </section>
-
-    <section id="projects" aria-labelledby="projects-title">
-      <h2 id="projects-title">Research Projects</h2>
-    
-      <style>
-        /* Minimal, page-safe styles */
-        .table-wrap {
-          overflow-x: auto;
-          margin: 1rem 0;
-        }
-    
-        table.projects {
-          width: 100%;
-          border-collapse: collapse;
-          font-size: 0.95rem;
-        }
-    
-        .projects th,
-        .projects td {
-          border: 1px solid #e2e2e2;
-          padding: 0.6rem 0.7rem;
-          vertical-align: top;
-        }
-    
-        .projects th {
-          background: #f7f7f7;
-          text-align: left;
-          position: sticky;
-          top: 0;
-        }
-    
-        .projects caption {
-          text-align: left;
-          font-weight: 600;
-          margin-bottom: 0.5rem;
-        }
-    
-        .pill {
-          background: #eef3ff;
-          border: 1px solid #d7e1ff;
-          padding: 0.15rem 0.45rem;
-          border-radius: 999px;
-          font-size: 0.85em;
-          white-space: nowrap;
-        }
-    
-        @media (max-width: 720px) {
-    
-          .projects td:nth-child(1),
-          .projects th:nth-child(1) {
-            min-width: 160px;
-          }
-    
-          .projects td:nth-child(4) {
-            min-width: 260px;
-          }
-        }
-    
-        ul.resp {
-          margin: 0;
-          padding-left: 1.1rem;
-        }
-    
-        ul.resp li {
-          margin: 0.2rem 0;
-        }
-      </style>
-    
-      <div class="table-wrap">
-        <table class="projects">
-          <caption>Research projects, roles, and contributions</caption>
-          <thead>
-            <tr>
-              <th>Name / Period</th>
-              <th>Description</th>
-              <th>Role</th>
-              <th>Responsibilities / Achievements</th>
-              <th>Source</th>
-              <th>Total Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>ROBOCOMP</strong><br><span class="pill">2023–2024</span></td>
-              <td>Robotic Process Automation in Anti-Money Laundering (AML)</td>
-              <td>Lead Researcher</td>
-              <td>
-                <ul class="resp">
-                  <li>Developed LLM-powered AML compliance reporter.</li>
-                  <li>Built RAG pipelines using jurisdiction-specific legal docs.</li>
-                  <li>Technical documentation and reporting.</li>
-                </ul>
-              </td>
-              <td>FNR (NCER)</td>
-              <td>180&nbsp;&euro; k (1 RA)</td>
-            </tr>
-    
-            <tr>
-              <td><strong>DIOSSA – Phase 2</strong><br><span class="pill">2024–2026</span></td>
-              <td>Deep Learning-based In-orbit Space Situational Awareness</td>
-              <td>Postdoctoral Researcher</td>
-              <td>
-                <ul class="resp">
-                  <li>DL models for 6-DoF spacecraft pose estimation; addressed synthetic-to-real gap.</li>
-                  <li>Technical documentation and reporting.</li>
-                  <li>1 peer-reviewed conference paper.</li>
-                </ul>
-              </td>
-              <td>ESA</td>
-              <td>700&nbsp;&euro; k (4 RA)</td>
-            </tr>
-    
-            <tr>
-              <td><strong>Zero-G Lab Project</strong><br><span class="pill">2021–2022</span></td>
-              <td>Artificial space-like lab for simulating space operations</td>
-              <td>PhD Researcher</td>
-              <td>
-                <ul class="resp">
-                  <li>Supported equipment selection and setup for “SnT Zero-G Lab”.</li>
-                  <li>1 peer-reviewed journal paper.</li>
-                </ul>
-              </td>
-              <td>Ministry of Economy (LU)</td>
-              <td>180&nbsp;&euro; k (2 RA, 0.5 PhD)</td>
-            </tr>
-    
-            <tr>
-              <td><strong>FakeDeTeR</strong><br><span class="pill">2022–2025</span></td>
-              <td>Deepfake Detection via Spatio-Temporal-Spectral Learning</td>
-              <td>PhD Researcher</td>
-              <td>
-                <ul class="resp">
-                  <li>Proposed strategies to minimize domain gap in vision classification.</li>
-                  <li>1 peer-reviewed conference paper.</li>
-                </ul>
-              </td>
-              <td>FNR BRIDGES</td>
-              <td>400&nbsp;&euro; k (2 RA, 2 PhD)</td>
-            </tr>
-    
-            <tr>
-              <td><strong>UNFAKE</strong><br><span class="pill">2021–2024</span></td>
-              <td>Deepfake Detection Using Spatio-Temporal-Spectral Methods</td>
-              <td>PhD Researcher</td>
-              <td>
-                <ul class="resp">
-                  <li>DL-based strategies to identify multiple facial manipulations.</li>
-                  <li>1 peer-reviewed conference paper.</li>
-                </ul>
-              </td>
-              <td>FNR Industrial Fellowship</td>
-              <td>184&nbsp;&euro; k (2 PhD)</td>
-            </tr>
-    
-            <tr>
-              <td><strong>MEET-A</strong><br><span class="pill">2021–2023</span></td>
-              <td>Multi-modal Fusion of Electro-optical Sensors for Spacecraft Pose</td>
-              <td>PhD Researcher</td>
-              <td>
-                <ul class="resp">
-                  <li>Vision-based methods for classification-driven scene understanding.</li>
-                  <li>Addressed domain shift between synthetic and real images.</li>
-                  <li>3 conference papers, 1 journal paper.</li>
-                </ul>
-              </td>
-              <td>FNR BRIDGES</td>
-              <td>400&nbsp;&euro; k (2 RA, 2 PhD)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-
-    <section id="publications">
-      <h2>Publications</h2>
-      <!-- <p class="lead">Selected papers with links to PDFs, code, datasets, and slides. Add a 1–2 sentence plain-English summary for recruiters.</p> -->
-      <div class="grid" id="papersGrid"></div>
-    </section>
-
-    <section id="videos">
-      <h2>Videos</h2>
-      <!-- <p class="lead">Talks, demos, or media coverage. Use unlisted YouTube/Vimeo if needed.</p> -->
-      <div class="grid" id="videosGrid"></div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <!-- <p class="lead">Hands-on projects and repos that demonstrate your skills. Include results, demo links, and a short description of what you built and why it matters.</p> -->
-      <div class="grid" id="projectsGrid"></div>
-    </section>
-
-    <section id="outreach">
-      <h2>Outreach & Service</h2>
-      <!-- <p class="lead">Talks, workshops, mentoring, community events, program committees, teaching, or volunteering.</p> -->
-      <div class="grid" id="outreachGrid"></div>
-    </section>
-
-    <section id="gallery">
-      <h2>Photos</h2>
-      <!-- <p class="lead">A few highlights from conferences, demos, or outreach activities.</p> -->
-      <div class="gallery" id="galleryGrid"></div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a id="email" href="mailto:you@university.edu">you@university.edu</a> · <a href="media/CV_for_Researchers_Inder.pdf">Download CV (PDF)</a></p>
-      <p class="small">I’m open to roles in research engineering/scientist and data science. Feel free to reach out for collaborations.</p>
-    </section>
+  <nav class="nav"><div class="container nav-inner"><a class="brand" href="#top">Inder<span>.</span>AI</a><div class="links"><a href="#portfolio">Portfolio</a><a href="#research">Research</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#contact">Contact</a></div></div></nav>
+  <main id="top">
+    <section class="hero"><div class="container hero-grid"><div><div class="eyebrow">AI Engineer · Data Scientist · Researcher</div><h1>Building deployable AI systems from research ideas.</h1><p class="subtitle">I am Dr. Inder Pal Singh, a Luxembourg-based AI/ML researcher and engineer working across computer vision, explainable machine learning, RAG/LLM applications, and applied AI systems for space, fintech, and visual understanding.</p><div class="hero-actions"><a class="btn primary" href="#portfolio">🚀 View Portfolio</a><a class="btn" href="#publications">📚 Research Publications</a><a class="btn" href="media/CV_for_Researchers_Inder.pdf">📄 Download CV</a></div><div class="chips" id="heroChips"></div></div><aside class="hero-card"><div class="avatar-wrap"><img class="avatar" src="media/photos/profile_pic_compressed.jpg" alt="Portrait of Dr. Inder Pal Singh"><div class="quick"><h3>Dr. Inder Pal Singh</h3><p>PhD Computer Science · AI & Vision</p><p>Luxembourg-based</p></div></div><div class="signal-grid"><div class="signal"><strong>10+ yrs</strong><span>engineering + research</span></div><div class="signal"><strong>AI/CV</strong><span>vision, XAI, RAG</span></div><div class="signal"><strong>Deploy</strong><span>Streamlit, Docker, HF</span></div><div class="signal"><strong>Research</strong><span>publications & projects</span></div></div></aside></div></section>
+    <section class="section"><div class="container"><div class="eyebrow">Positioning</div><h2 class="section-title">Research depth with AI engineering execution.</h2><p class="section-lead">The goal of this portfolio is to show both sides: rigorous research background and practical ability to build, explain, and deploy ML systems.</p><img src="media/portfolio/portfolio_positioning.png" alt="Portfolio positioning" style="border-radius:24px;border:1px solid var(--line);box-shadow:var(--shadow);"><div class="three"><div class="role-card"><div class="role-icon">🤖</div><h3>AI Engineer</h3><p>End-to-end AI prototypes, Streamlit apps, Docker-ready deployments, RAG workflows, and applied LLM systems.</p></div><div class="role-card"><div class="role-icon">📊</div><h3>Data Scientist</h3><p>Feature engineering, XGBoost, SHAP, model evaluation, thresholding, and practical analytics storytelling.</p></div><div class="role-card"><div class="role-icon">🔬</div><h3>Researcher</h3><p>Computer vision, multi-label learning, domain adaptation, deepfake detection, and spacecraft pose estimation.</p></div></div></div></section>
+    <section class="section" id="portfolio"><div class="container"><div class="eyebrow">Featured Portfolio</div><h2 class="section-title">Applied AI projects built for deployment.</h2><p class="section-lead">These projects demonstrate practical engineering ability: model building, explainability, UI, documentation, and deployment-readiness.</p><div class="portfolio-grid" id="portfolioGrid"></div></div></section>
+    <section class="section" id="ai-stack"><div class="container"><div class="eyebrow">How I build</div><h2 class="section-title">From model to usable AI product.</h2><div class="pipeline"><div class="step"><strong>1. Data</strong><span>cleaning, features, validation</span></div><div class="step"><strong>2. Model</strong><span>XGBoost, CV, DL, RAG</span></div><div class="step"><strong>3. Explain</strong><span>SHAP, metrics, error analysis</span></div><div class="step"><strong>4. App</strong><span>Streamlit, APIs, reports</span></div><div class="step"><strong>5. Deploy</strong><span>Docker, GitHub, HF Spaces</span></div></div></div></section>
+    <section class="section" id="research"><div class="container"><div class="eyebrow">Research</div><h2 class="section-title">Research themes I still actively carry into engineering.</h2><p class="section-lead">My research background remains central, especially when building robust models under domain shift, limited labels, and explainability constraints.</p><div class="cards-grid" id="researchGrid"></div></div></section>
+    <section class="section" id="skills"><div class="container"><div class="eyebrow">Technical Stack</div><h2 class="section-title">Skills across ML research, data science, and deployment.</h2><div class="skills-grid" id="skillsGrid"></div></div></section>
+    <section class="section" id="experience"><div class="container"><div class="eyebrow">Experience</div><h2 class="section-title">Research, engineering, and leadership background.</h2><div class="timeline" id="experienceTimeline"></div></div></section>
+    <section class="section" id="publications"><div class="container"><div class="eyebrow">Selected Publications</div><h2 class="section-title">Computer vision and domain adaptation research.</h2><p class="section-lead">Selected peer-reviewed work. Full list available on Google Scholar.</p><div class="pub-list" id="publicationsList"></div></div></section>
+    <section class="section" id="outreach"><div class="container"><div class="eyebrow">Teaching & Outreach</div><h2 class="section-title">Mentoring, teaching, and public engagement.</h2><div class="cards-grid" id="outreachGrid"></div></div></section>
+    <section class="section" id="contact"><div class="container"><div class="contact-box"><div><div class="eyebrow">Contact</div><h2 class="section-title">Open to AI engineering, data science, and applied research roles.</h2><p class="section-lead">I am especially interested in roles involving computer vision, applied ML, RAG/LLMs, explainable AI, and deployment of AI prototypes.</p></div><div><p><strong>Email</strong><br><a href="mailto:indersingh17188@gmail.com">indersingh17188@gmail.com</a></p><p><strong>GitHub</strong><br><a href="https://github.com/indersingh17188" target="_blank">@indersingh17188</a></p><p><strong>LinkedIn</strong><br><a href="https://www.linkedin.com/in/indersingh17188/" target="_blank">linkedin.com/in/indersingh17188</a></p><p><strong>Google Scholar</strong><br><a href="https://scholar.google.com/citations?user=EByNsQ0AAAAJ&hl=en" target="_blank">Scholar profile</a></p></div></div></div></section>
   </main>
-
-  <footer>
-    <div class="container">
-      <div>© <span id="year"></span> Inder Pal Singh</div>
-      <div class="small">Built with vanilla HTML/CSS/JS. Deployed on GitHub Pages.</div>
-    </div>
-  </footer>
-
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
-    <button id="lb-close" class="lb-close" aria-label="Close">×</button>
-    <button id="lb-prev" class="lb-btn lb-prev" aria-label="Previous">‹</button>
-    <div class="lb-content">
-      <img id="lb-img" class="lb-img" alt="">
-      <div id="lb-count" class="lb-count"></div>
-      <div id="lb-cap" class="lb-cap"></div>
-    </div>
-    <button id="lb-next" class="lb-btn lb-next" aria-label="Next">›</button>
-  </div>
+  <footer><div class="container">© <span id="year"></span> Inder Pal Singh · Built with vanilla HTML/CSS/JS · Deployed on GitHub Pages</div></footer>
 
   <script>
-    // ======== EDIT THESE ARRAYS ONLY – the page auto-renders ========
-    const PROFILE = {
-      name: "Dr. Inder Pal SINGH",
-      avatar: "media/photos/profile_pic_compressed.jpg", // put image file in /assets
-      email: "indersingh17188@gmail.com",
-      github: "indersingh17188",
-      scholar: "https://scholar.google.com/citations?user=EByNsQ0AAAAJ&hl=en",
-      linkedin: "https://www.linkedin.com/in/indersingh17188/",
-      skills: [
-        "Python", "PyTorch", "TensorFlow", "Scikit-learn",
-        "Computer Vision", "GNNs & CNNs", "Transformers",
-        "LLMs (GPT-4, Mistral)", "RAG",
-        "Docker", "CI/CD", "HPC & Cloud", "SQL"
-        ]
-    };
-
-    // Publications
-    const PAPERS = [
-      {
-        title: "DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification",
-        authors: "Inder Pal Singh et al.",
-        venue: "WACV",
-        year: 2024,
-        teaser: "We propose a discriminator-free adversarial UDA approach for MLIC overcoming the limitation of mode-collapse.",
-        pdf: "https://openaccess.thecvf.com/content/WACV2024/papers/Singh_Discriminator-Free_Unsupervised_Domain_Adaptation_for_Multi-Label_Image_Classification_WACV_2024_paper.pdf",
-        poster: "media/photos/dda_mlic/poster.pdf",
-        code: "https://github.com/cvi2snt/DDA-MLIC",
-        image: "media/photos/dda_mlic/dda_mlic.jpg",
-        alt: "Visualization for DDA-MLIC",
-        tags: ["domain adaptation", "adversarial", "discriminator-free", "image-classification"],
-        logo: "media/logos/cvf.png",
-        venueUrl: "https://wacv2024.thecvf.com/",
-        // NEW: gallery images (shown when user clicks the thumbnail)
-        images: [
-          { src: "media/photos/dda_mlic/dda_mlic4.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic1.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic2.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic3.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic5.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic6.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic7.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic8.jpg", caption: "" },
-          { src: "media/photos/dda_mlic/dda_mlic9.jpg", caption: "" },
-
-        ]
-      },
-      
-      {
-        title: "Bridging the Synthetic-Real Gap: Supervised Domain Adaptation for Robust Spacecraft 6-DoF Pose Estimation",
-        authors: "Inder Pal Singh et al.",
-        venue: "ASTRA",
-        year: 2025,
-        teaser: "We propose to simultaneously learn domain-invariant representations and risk for tackling domain gap in spacecraft pose estimation.",
-        pdf: "arxiv link",
-        image: "media/photos/sda_skr/sda_skr.jpg",
-        alt: "SDA-SKR",
-        tags: ["space-situational-awareness", "domain-gap", "spacecraft-pose-estimation", "in-orbit-servicing"],
-        logo: "media/logos/astra.jpg",
-        venueUrl: "https://atpi.eventsair.com/25a09--astra-2025/",
-        // NEW: gallery images (shown when user clicks the thumbnail)
-        images: [
-          { src: "media/photos/sda_skr/sda_skr2.jpg", caption: "" },
-          { src: "media/photos/sda_skr/sda_skr1.jpg", caption: "" },
-          { src: "media/photos/sda_skr/sda_skr3.jpg", caption: "" },
-          { src: "media/photos/sda_skr/sda_skr4.jpg", caption: "" },
-          { src: "media/photos/sda_skr/sda_skr5.jpg", caption: "" }
-        ]
-      },
-
-            {
-        title: "Multi-label Deepfake Classification",
-        authors: "Inder Pal Singh et al.",
-        venue: "MMSP",
-        year: 2023,
-        teaser: "Beyond real vs. fake: we cast deepfake detection as multi-label to pinpoint manipulation types. Benchmarks on a new dataset reveal surprising gaps in SOTA, calling for better methods and more realistic multi-label data.",
-        pdf: "https://orbilu.uni.lu/bitstream/10993/55909/1/DeepFake_MLIC_InderPalSINGH_MMSP2023_camera_ready%20.pdf",
-        code: "https://github.com/indersingh17188/DEEPFAKE-MLIC",
-        image: "/media/photos/df/df.jpg",
-        alt: "ML-DF",
-        tags: ["deepfake", "multi-label", "binary-classification", "computer-vision"],
-        logo: "media/logos/ieee.jpg",
-        venueUrl: "https://attend.ieee.org/mmsp-2023/",
-        // NEW: gallery images (shown when user clicks the thumbnail)
-        images: [
-          { src: "media/photos/df/df1.jpg", caption: "" }, 
-          { src: "media/photos/df/df2.jpg", caption: "" },
-          { src: "media/photos/df/df3.jpg", caption: "" },
-          { src: "media/photos/df/df4.jpg", caption: "" },
-          { src: "media/photos/df/df5.jpg", caption: "" }
-        ]
-      },
-
-      {
-        title: "IML-GCN: Improved Multi-Label Graph Convolutional Network for Efficient yet Precise Image Classification",
-        authors: "Inder Pal Singh et al.",
-        venue: "AAAI",
-        year: 2022,
-        teaser: "We model the multi-label relationships using novel image-based embeddings that improved the models's efficiency by approximately 35%.",
-        pdf: "https://orbilu.uni.lu/bitstream/10993/49421/1/AAAI_IML_GCN__Camera_ready_.pdf",
-        poster: "media/photos/iml_gcn/poster.pdf",
-        code: "https://github.com/indersingh17188/IML-GCN",
-        image: "media/photos/iml_gcn/arch_iml_gcn.jpg",
-        alt: "Visualization for Paper 1",
-        tags: ["representation-learning", "gcn", "gnn", "cnn"],
-        logo: "media/logos/aaai.jpg",
-        venueUrl: "https://aaai.org/conference/aaai/aaai-22/",
-          // NEW: gallery images (shown when user clicks the thumbnail)
-        images: [
-          { src: "media/photos/iml_gcn/arch_iml_gcn.jpg", caption: "Architecture overview" },
-          { src: "media/photos/iml_gcn/iml_gcn1.jpg", caption: "Our proposed image-based embeddings" },
-          { src: "media/photos/iml_gcn/result1.jpg", caption: "Results on MS-COCO" },
-          { src: "media/photos/iml_gcn/result2_iml_gcn.jpg", caption: "Results on VG-500" },
-          { src: "media/photos/iml_gcn/result3_iml_gcn.jpg", caption: "Ablation study" }
-        ]
-      },
-      {
-        title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS.",
-        authors: "Inder Pal Singh et al.",
-        venue: "IEEE ICIP",
-        year: 2022,
-        teaser: "An adaptive graph learning-based approach to enhance both the efficienct and accuracy for multi-label image classification.",
-        pdf: "https://orbilu.uni.lu/bitstream/10993/51776/1/ML_AGCN_Camera_Ready_ICIP_2022_InderPalSingh.pdf",
-        poster: "media/photos/ml_agcn/poster.pdf",
-        code: "https://github.com/indersingh17188/ML-AGCN",
-        image: "media/photos/arch_ml_agcn.jpg",
-        alt: "Segmentation qualitative results",
-        tags: ["adaptive-graphs", "graph-attention", "GAT", "GCN", "CNN"],
-        logo: "media/logos/ieee.jpg",
-        venueUrl: "https://2022.ieeeicip.org/",
-        images: [
-          { src: "media/photos/ml_agcn/ml_agcn2.jpg", caption: "" },
-          { src: "media/photos/ml_agcn/ml_agcn1.jpg", caption: "" },
-          { src: "media/photos/ml_agcn/ml_agcn3.jpg", caption: "" }, 
-          { src: "media/photos/ml_agcn/ml_agcn4.jpg", caption: "" }, 
-          { src: "media/photos/ml_agcn/ml_agcn5.jpg", caption: "" }
-        ]
-      },
-      {
-        title: "DA-AGCN: Multi-label Image Classification using Adaptive Graph Convolutional Networks: from a Single Domain to Multiple Domains",
-        authors: "Inder Pal Singh et al.",
-        venue: "CVIU",
-        year: 2024,
-        teaser: "We address the problem of domain-gap by extending our adaptive graph-based learning starategy (ML-AGCN) to Unsupervised Domain Adaptation (UDA) for Multi-label image classification.",
-        pdf: "https://orbilu.uni.lu/bitstream/10993/61663/1/1-s2.0-S1077314224001437-main.pdf",
-        code: "https://github.com/indersingh17188/DA-AGCN",
-        project: "https://github.com/indersingh17188/DA-AGCN",
-        image: "media/photos/da_agcn/da_agcn_graphs.jpg",
-        alt: "Visualization for DA-AGCN",
-        tags: ["domain adaptation", "adversarial", "gnn", "cnn"],
-        logo: "media/logos/elsevier.jpg",
-        venueUrl: "https://aaai.org/conference/aaai/aaai-22/",
-        // NEW: gallery images (shown when user clicks the thumbnail)
-        images: [
-          { src: "media/photos/da_agcn/da_agcn_graphs.jpg", caption: "Architecture overview" },
-          { src: "media/photos/da_agcn/da_agcn_intro.jpg", caption: "Our proposed image-based embeddings" },
-          { src: "media/photos/da_agcn/arch_da_agcn.jpg", caption: "Results on MS-COCO" },
-          { src: "media/photos/da_agcn/da_agcn_results1.jpg", caption: "Results on VG-500" },
-          { src: "media/photos/da_agcn/da_agcn_qual.jpg", caption: "Ablation study" },
-          { src: "media/photos/da_agcn/da_agcn_qual2.jpg", caption: "Ablation study" },
-          { src: "media/photos/da_agcn/da_agcn_failure_cases.jpg", caption: "Ablation study" }
-        ]
-      }
-
+    const LINKS={github:"https://github.com/indersingh17188",amlRepo:"https://github.com/indersingh17188/aml-compliance-reporter",yoloRepo:"https://github.com/indersingh17188",linkedin:"https://www.linkedin.com/in/indersingh17188/",scholar:"https://scholar.google.com/citations?user=EByNsQ0AAAAJ&hl=en"};
+    const heroChips=["Computer Vision","XGBoost + SHAP","RAG / LLM Apps","Streamlit","Docker","Domain Adaptation","Space AI","FinTech AI","PyTorch"];
+    const portfolioProjects=[
+      {title:"Explainable AML Compliance Reporter",image:"media/portfolio/aml_compliance_reporter.png",summary:"End-to-end AML risk assessment demo combining XGBoost, SHAP explainability, FAISS RAG over a curated AML knowledge base, and a Streamlit analyst report interface.",tags:["XGBoost","SHAP","FAISS","RAG","Streamlit","FinTech"],links:{repo:LINKS.amlRepo,demo:"#"},highlights:["Feature engineering for AML transaction data","Threshold-based risk levels","RAG-enriched analyst report"]},
+      {title:"YOLO Object Detection Deployment Demo",image:"media/portfolio/yolo_detection_demo.png",summary:"Computer vision deployment project showing object detection with YOLO, Streamlit UI, clean inference workflow, and deployment-oriented documentation.",tags:["YOLO","Object Detection","Computer Vision","Streamlit","Docker"],links:{repo:LINKS.yoloRepo,demo:"#"},highlights:["Image/video inference pipeline","Deployment-focused structure","Portfolio-ready CV application"]},
+      {title:"Future Portfolio Slot",image:"media/portfolio/portfolio_positioning.png",summary:"Reserved for the next applied AI project, such as document AI/OCR, RAG assistant, 3D perception, or computer vision robotics demo.",tags:["Coming Soon","AI Engineering","Deployment"],links:{repo:"#",demo:"#"},highlights:["Designed for future additions","Same reusable card structure","Easy to extend in JavaScript"]}
     ];
-
-    
-    // Videos (YouTube/Vimeo embed URLs)
-    const VIDEOS = [
-      { title: "DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification at WACV 2024", url: "https://www.youtube.com/embed/OyHCr-St97s", caption: "" },
-      { title: "ML-AGCN: MULTI LABEL IMAGE CLASSIFICATION USING ADAPTIVE GRAPH CONVOLUTIONAL NETWORKS at IEEE ICIP 2022", url: "https://www.youtube.com/embed/phwfFfXxV88", caption: "" },
-      { title: "IML-GCN: Improved Multi-Label Graph Convolutional Network for Efficient yet Precise Image Classification at AAAI 2022", url: "https://www.youtube.com/embed/saPsmRHpuis", caption: "" }
-
+    const researchThemes=[
+      {title:"Multi-label Image Classification",meta:"MLIC · GCN · CNN",text:"Graph-based and adaptive methods for multi-label visual recognition, including IML-GCN, ML-AGCN, DA-AGCN and DDA-MLIC."},
+      {title:"Domain Adaptation",meta:"Synthetic-to-real · UDA/SDA",text:"Research on reducing domain gaps in visual classification and spacecraft pose estimation under changing data distributions."},
+      {title:"AI for Space",meta:"SSA · 6-DoF pose",text:"Deep learning for spacecraft pose estimation and space situational awareness, including synthetic-to-real adaptation."},
+      {title:"Deepfake Classification",meta:"Multi-label deepfake detection",text:"Moving beyond binary real/fake detection toward identifying multiple facial manipulation types."},
+      {title:"FinTech AI",meta:"AML · RAG · Explainability",text:"Applied AI systems for AML reporting, explainable risk scoring, and regulatory knowledge retrieval."},
+      {title:"Applied LLM Systems",meta:"RAG · reporting · prototypes",text:"LLM-powered tools with retrieval, structured reports, and human-readable outputs for practical workflows."}
     ];
-
-    // Projects
-    const PROJECTS = [
-      {
-        title: "AML Copilot for FinTech (RAG + Automation)",
-        summary: "Built LLM pipelines for automated regulatory reporting and AML support with retrieval over policy/transactional data; hardened prompts and guardrails.",
-        tags: ["FinTech", "LLM", "RAG", "AML"]
-      }
-
+    const skillGroups=[
+      {title:"ML & Data Science",items:["XGBoost","Scikit-learn","SHAP","model evaluation","feature engineering","threshold tuning"]},
+      {title:"Computer Vision",items:["YOLO","OpenCV","PyTorch","CNNs","image classification","object detection","pose estimation"]},
+      {title:"RAG & LLM Apps",items:["FAISS","FastEmbed","prompt design","retrieval pipelines","analyst reports"]},
+      {title:"Deployment",items:["Streamlit","Docker","Git/GitHub","Hugging Face Spaces","Linux/SSH","reproducible projects"]}
     ];
-
-    // Outreach / Service
-    const OUTREACH = [
-             {
-        title: "Lecturer – AI & Data Science (MSDA)",
-        org: "European Business Institute of Luxembourg",
-        date: "2022 – Present",
-        blurb: "Teach Statistics, Machine Learning, Deep Learning, and NLP; mentor graduate projects.",
-        links: { page: "https://ebulux.lu/" },
-        image: "media/photos/EBU.png",
-        alt: "Profile snapshot",
-        tags: ["teaching", "mentoring"]
-      },
-       {
-        title: "Smart Schoul 2025",
-        org: "Luxembourg Outreach",
-        date: "2025",
-        blurb: "Hands-on demonstrations introducing AI to students.",
-        links: {page: "https://smartschoul2025.uni.lu/"},
-        image: "media/photos/smart_schoul.jpg",
-        alt: "Smart Schoul",
-        tags: ["outreach", "Digital-Lëtzebuerg"]
-      },
-        {
-        title: "ESCH 2022: Sound of Data",
-        org: "Luxembourg",
-        date: "2022",
-        blurb: "Community event contributions around data and creativity.",
-        links: {page: "https://esch2022.lu/en/cultural-agenda/?project_number=860"},
-        image: "media/photos/sound_of_data.jpg",
-        alt: "Sound of Data",
-        tags: ["outreach", "Esch2022", "science meets music"]
-      },
-        {
-        title: "Asteroid Day 2024",
-        org: "Luxembourg",
-        date: "2024",
-        blurb: "Public engagement on space and data science.",
-        links: {page: "https://asteroidday.org/news-updates/asteroid-day-2024-press-release/"},
-        image: "media/photos/asteroid_day_demo.jpeg",
-        alt: "Our booth at the Asteroid Day",
-        tags: ["space", "community"]
-      },
-
+    const experience=[
+      {date:"2024–2025",title:"Research Associate / Postdoctoral Researcher",place:"University of Luxembourg",text:"AI for space, FinTech AI, 6-DoF spacecraft pose estimation, RAG/LLM compliance prototypes, mentoring and technical reporting."},
+      {date:"2019–2024",title:"PhD Researcher in AI & Computer Vision",place:"University of Luxembourg",text:"Research in multi-label image classification, domain adaptation, deepfake classification, graph-based learning and visual representation learning."},
+      {date:"2013–2018",title:"Senior Data Analyst / Lead Engineer",place:"Tata Consultancy Services",text:"Led analytics, dashboards, SLA/KPI tracking, process automation and team coordination for telecom engineering projects."},
+      {date:"2018–2020",title:"M.S. Computer Vision & Robotics",place:"Université de Bourgogne",text:"Computer vision, robotics, 3D perception and applied machine learning foundation."}
     ];
-
-    // Photo gallery
-    const PHOTOS = [
-      { src: "media/photos/ICIP_presentation.jpg", alt: "Attending and presenting at IEEE ICIP 2022" },
-      { src: "media/photos/mmsp_present.jpg", alt: "Prsenting at IEEE MMSP 2023" },
+    const publications=[
+      {title:"DDA-MLIC: Discriminator-free Unsupervised Domain Adaptation for Multi-label Image Classification",venue:"WACV 2024",image:"media/photos/dda_mlic/dda_mlic.jpg",text:"Discriminator-free adversarial UDA approach for multi-label image classification.",links:{pdf:"https://openaccess.thecvf.com/content/WACV2024/papers/Singh_Discriminator-Free_Unsupervised_Domain_Adaptation_for_Multi-Label_Image_Classification_WACV_2024_paper.pdf",code:"https://github.com/cvi2snt/DDA-MLIC"},tags:["domain adaptation","MLIC","WACV"]},
+      {title:"Bridging the Synthetic-Real Gap for Spacecraft 6-DoF Pose Estimation",venue:"ASTRA 2025",image:"media/photos/sda_skr/sda_skr.jpg",text:"Supervised domain adaptation for robust spacecraft pose estimation under synthetic-to-real shift.",links:{pdf:"#",code:"#"},tags:["space AI","pose estimation","domain gap"]},
+      {title:"Multi-label Deepfake Classification",venue:"IEEE MMSP 2023",image:"media/photos/df/df.jpg",text:"Formulates deepfake detection as multi-label classification to identify manipulation types.",links:{pdf:"https://orbilu.uni.lu/bitstream/10993/55909/1/DeepFake_MLIC_InderPalSINGH_MMSP2023_camera_ready%20.pdf",code:"https://github.com/indersingh17188/DEEPFAKE-MLIC"},tags:["deepfake","multi-label","computer vision"]},
+      {title:"IML-GCN: Improved Multi-Label Graph Convolutional Network",venue:"AAAI 2022",image:"media/photos/iml_gcn/arch_iml_gcn.jpg",text:"Improved multi-label image classification with image-based embeddings for graph learning.",links:{pdf:"https://orbilu.uni.lu/bitstream/10993/49421/1/AAAI_IML_GCN__Camera_ready_.pdf",code:"https://github.com/indersingh17188/IML-GCN"},tags:["GCN","multi-label","AAAI"]}
     ];
-
-
-    // ======== RENDERING (no need to edit below) ========
-    const $ = (sel) => document.querySelector(sel);
-    const el = (tag, cls) => { const e = document.createElement(tag); if (cls) e.className = cls; return e; };
-
-    // ===== Lightbox / Gallery state =====
-    const GALLERY = { items: [], idx: 0 };
-
-    function renderSlide() {
-      const item = GALLERY.items[GALLERY.idx];
-      const img = document.getElementById('lb-img');
-      const cap = document.getElementById('lb-cap');
-      const count = document.getElementById('lb-count');
-      img.src = item.src;
-      img.alt = item.alt || '';
-      cap.textContent = item.caption || '';
-      count.textContent = `${GALLERY.idx + 1} / ${GALLERY.items.length}`;
-
-      // (nice to have) preload neighbors
-      const next = GALLERY.items[(GALLERY.idx + 1) % GALLERY.items.length]?.src;
-      const prev = GALLERY.items[(GALLERY.idx - 1 + GALLERY.items.length) % GALLERY.items.length]?.src;
-      if (next) { const i = new Image(); i.src = next; }
-      if (prev) { const i = new Image(); i.src = prev; }
-    }
-
-    function openGallery(items, startIndex = 0) {
-      GALLERY.items = items;
-      GALLERY.idx = Math.min(Math.max(startIndex, 0), items.length - 1);
-      document.getElementById('lightbox').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      renderSlide();
-    }
-    function closeGallery() {
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function nextSlide() { GALLERY.idx = (GALLERY.idx + 1) % GALLERY.items.length; renderSlide(); }
-    function prevSlide() { GALLERY.idx = (GALLERY.idx - 1 + GALLERY.items.length) % GALLERY.items.length; renderSlide(); }
-
-    // Wire buttons + keys + basic swipe
-    document.getElementById('lb-close').addEventListener('click', closeGallery);
-    document.getElementById('lb-next').addEventListener('click', nextSlide);
-    document.getElementById('lb-prev').addEventListener('click', prevSlide);
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-      // close if clicking backdrop (not buttons/content)
-      if (e.target.id === 'lightbox') closeGallery();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (!document.getElementById('lightbox').classList.contains('open')) return;
-      if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowRight') nextSlide();
-      if (e.key === 'ArrowLeft') prevSlide();
-    });
-    // touch swipe
-    let tStartX = null;
-    document.getElementById('lightbox').addEventListener('touchstart', (e) => { tStartX = e.changedTouches[0].screenX; }, { passive: true });
-    document.getElementById('lightbox').addEventListener('touchend', (e) => {
-      if (tStartX == null) return;
-      const dx = e.changedTouches[0].screenX - tStartX;
-      if (Math.abs(dx) > 40) dx < 0 ? nextSlide() : prevSlide();
-      tStartX = null;
-    }, { passive: true });
-
-
-    function icon(name){
-      const paths = {
-        link: '<path d="M10.59 13.41a1.5 1.5 0 0 1 0-2.12l3.88-3.88a1.5 1.5 0 1 1 2.12 2.12l-3.88 3.88a1.5 1.5 0 0 1-2.12 0Z"/><path d="M8.47 15.53a4.5 4.5 0 0 1 0-6.36l2.12-2.12"/><path d="M13.41 10.59a4.5 4.5 0 0 1 0 6.36l-2.12 2.12"/>',
-        file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/>',
-        code: '<path d="m10 18 4-12"/><path d="m7 14-4-4 4-4"/><path d="m17 14 4-4-4-4"/>'
-      };
-      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${paths[name]||paths.link}</svg>`;
-    }
-
-    function renderBadges(){
-      const wrap = $("#skills");
-      PROFILE.skills.forEach(s => { const b = el('span','badge'); b.textContent = s; wrap.appendChild(b); });
-    }
-
-    function renderCards(items, gridId, kind){
-      const grid = $(gridId);
-      items.forEach(item => {
-        const card = el('article', 'card');
-        const inner = el('div', 'card-inner');
-        if (kind === 'paper') { inner.style.gridTemplateColumns = '1fr'; }
-
-        const left = el('div');
-        const thumb = el('div', 'thumb');
-        const img = el('img');
-        img.loading = 'lazy';
-        img.src = item.image || 'assets/placeholder.jpg';
-        img.alt = item.alt || item.title || 'thumbnail';
-        thumb.appendChild(img);
-        // --- Click-to-open gallery ---
-        // Build the images array for this item
-        let galleryItems = [];
-        if (Array.isArray(item.images) && item.images.length) {
-          galleryItems = item.images.map(x => ({
-            src: x.src,
-            alt: x.alt || item.title,
-            caption: x.caption || item.title
-          }));
-        } else {
-          // fallback: single image (use imageLarge if present)
-          galleryItems = [{
-            src: item.imageLarge || item.image,
-            alt: item.alt || item.title,
-            caption: item.title
-          }];
-        }
-
-        // Open gallery on click / keyboard
-        const open = () => openGallery(galleryItems, 0);
-        thumb.setAttribute('role', 'button');
-        thumb.tabIndex = 0;
-        thumb.title = 'Click to preview';
-        thumb.addEventListener('click', open);
-        thumb.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-        });
-
-        left.appendChild(thumb);
-
-        const right = el('div');
-        const h3 = el('h3'); h3.textContent = item.title || 'Untitled';
-        right.appendChild(h3);
-
-        // --- meta row with optional venue logo on the right
-        const metaRow = el('div', 'meta-row');
-        const metaLeft = el('div', 'meta');
-
-        if (kind === 'paper') {
-          metaLeft.textContent = `${item.authors} • ${item.venue} • ${item.year}`;
-          // optional venue logo
-          if (item.logo) {
-            const logoWrap = item.venueUrl ? el('a') : el('div');
-            if (item.venueUrl) { logoWrap.href = item.venueUrl; logoWrap.target = '_blank'; }
-            const logo = el('img', 'venue-logo');
-            logo.src = item.logo;
-            logo.alt = `${item.venue || 'Venue'} logo`;
-            logo.loading = 'lazy';
-            logoWrap.appendChild(logo);
-            metaRow.appendChild(logoWrap);
-              }
-            } else if (kind === 'outreach') {
-              metaLeft.textContent = `${item.org} • ${item.date}`;
-            }
-
-          metaRow.prepend(metaLeft);
-          right.appendChild(metaRow);
-
-        const p = el('p'); p.textContent = (item.teaser || item.summary || item.blurb || '').trim(); right.appendChild(p);
-
-        const tags = el('div','tags'); (item.tags||[]).forEach(t => { const tt = el('span','tag'); tt.textContent = t; tags.appendChild(tt); }); right.appendChild(tags);
-
-        const actions = el('div','actions');
-        if (kind==='paper'){
-          if (item.pdf){ const a = el('a','btn'); a.href=item.pdf; a.innerHTML=icon('file')+" PDF"; a.target='_blank'; actions.appendChild(a); }
-          if (item.poster) { const a = el('a', 'btn'); a.href = item.poster; a.innerHTML = icon('file') + " Poster"; a.target = '_blank'; actions.appendChild(a); }
-          if (item.code){ const a = el('a','btn'); a.href=item.code; a.innerHTML=icon('code')+" Code"; a.target='_blank'; actions.appendChild(a); }
-          if (item.project){ const a = el('a','btn'); a.href=item.project; a.innerHTML=icon('link')+" Project"; a.target='_blank'; actions.appendChild(a); }
-        } else if (kind==='project'){
-          const L = item.links||{};
-          if (L.demo){ const a = el('a','btn'); a.href=L.demo; a.innerHTML=icon('link')+" Demo"; a.target='_blank'; actions.appendChild(a); }
-          if (L.repo){ const a = el('a','btn'); a.href=L.repo; a.innerHTML=icon('code')+" Repo"; a.target='_blank'; actions.appendChild(a); }
-        } else if (kind==='outreach'){
-          const L = item.links||{};
-          if (L.page){ const a = el('a','btn'); a.href=L.page; a.innerHTML=icon('link')+" Link"; a.target='_blank'; actions.appendChild(a); }
-          if (L.slides){ const a = el('a','btn'); a.href=L.slides; a.innerHTML=icon('file')+" Slides"; a.target='_blank'; actions.appendChild(a); }
-        }
-        right.appendChild(actions);
-
-        inner.appendChild(left); inner.appendChild(right);
-        card.appendChild(inner);
-        grid.appendChild(card);
-      });
-    }
-
-    function renderGallery(){
-      const grid = document.querySelector('#galleryGrid');
-      PHOTOS.forEach(ph => {
-        const fig = el('figure');
-        const img = el('img'); img.loading = 'lazy'; img.src = ph.src; img.alt = ph.alt||''; fig.appendChild(img);
-        grid.appendChild(fig);
-      })
-    }
-
-    function renderVideos(){
-      const grid = document.querySelector('#videosGrid');
-      VIDEOS.forEach(v => {
-        const wrap = el('div','card');
-        const inner = el('div','card-inner');
-        inner.style.gridTemplateColumns = '1fr';
-        const title = el('h3'); title.textContent = v.title; inner.appendChild(title);
-        const frame = el('div','video');
-        frame.innerHTML = `<iframe src="${v.url}" title="${v.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-        inner.appendChild(frame);
-        const cap = el('div','meta'); cap.textContent = v.caption||''; inner.appendChild(cap);
-        wrap.appendChild(inner); grid.appendChild(wrap);
-      });
-    }
-
-    function hydrateProfile(){
-      document.title = `${PROFILE.name} – Research & Projects`;
-      document.querySelector('meta[name="description"]').setAttribute('content', `${PROFILE.name} – publications, projects, code, outreach, and contact.`)
-      document.querySelector('meta[property="og:title"]').setAttribute('content', `${PROFILE.name} – Research & Projects`)
-      document.getElementById('avatar').src = PROFILE.avatar;
-      document.getElementById('avatar').alt = `Portrait of ${PROFILE.name}`;
-      document.getElementById('email').href = `mailto:${PROFILE.email}`;
-      document.getElementById('email').textContent = PROFILE.email;
-      document.getElementById('gh').href = `https://github.com/${PROFILE.github}`;
-      document.getElementById('gh').textContent = `@${PROFILE.github}`;
-      document.getElementById('scholar').href = PROFILE.scholar;
-      document.getElementById('li').href = PROFILE.linkedin;
-    }
-
-    function init(){
-      hydrateProfile();
-      renderBadges();
-      renderCards(PAPERS, '#papersGrid', 'paper');
-      renderVideos();
-      renderCards(PROJECTS, '#projectsGrid', 'project');
-      renderCards(OUTREACH, '#outreachGrid', 'outreach');
-      renderGallery();
-      document.getElementById('year').textContent = new Date().getFullYear();
-    }
-
-    init();
+    const outreach=[
+      {title:"Lecturer – AI & Data Science",meta:"European Business Institute of Luxembourg",text:"Teaching statistics, machine learning, deep learning and NLP; mentoring graduate projects."},
+      {title:"Smart Schoul 2025",meta:"AI outreach",text:"Hands-on demonstrations introducing students to AI and data science."},
+      {title:"Asteroid Day 2024",meta:"Space outreach",text:"Public engagement around space, AI and scientific applications."}
+    ];
+    const $=s=>document.querySelector(s); const mk=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e;};
+    function renderChips(){heroChips.forEach(x=>{const c=mk("span","chip");c.textContent=x;$("#heroChips").appendChild(c);});}
+    function renderPortfolio(){portfolioProjects.forEach(p=>{const card=mk("article","project-card");card.innerHTML=`<div class="project-shot"><img src="${p.image}" alt="${p.title} screenshot"></div><div class="project-body"><h3>${p.title}</h3><p>${p.summary}</p><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div><ul class="muted">${p.highlights.map(h=>`<li>${h}</li>`).join("")}</ul><div class="project-actions">${p.links.repo&&p.links.repo!=="#"?`<a class="btn" href="${p.links.repo}" target="_blank">💻 GitHub</a>`:`<span class="btn">💻 Repo coming soon</span>`}${p.links.demo&&p.links.demo!=="#"?`<a class="btn" href="${p.links.demo}" target="_blank">🚀 Demo</a>`:`<span class="btn">🚀 Demo soon</span>`}</div></div>`;$("#portfolioGrid").appendChild(card);});}
+    function renderResearch(){researchThemes.forEach(r=>{const c=mk("article","mini-card");c.innerHTML=`<div class="meta">${r.meta}</div><h3>${r.title}</h3><p>${r.text}</p>`;$("#researchGrid").appendChild(c);});}
+    function renderSkills(){skillGroups.forEach(s=>{const c=mk("article","skill-card");c.innerHTML=`<h3>${s.title}</h3><ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul>`;$("#skillsGrid").appendChild(c);});}
+    function renderExperience(){experience.forEach(e=>{const c=mk("article","timeline-item");c.innerHTML=`<div class="date">${e.date}</div><div><h3>${e.title}</h3><p class="meta">${e.place}</p><p>${e.text}</p></div>`;$("#experienceTimeline").appendChild(c);});}
+    function renderPublications(){publications.forEach(p=>{const c=mk("article","pub");c.innerHTML=`<img src="${p.image}" alt="${p.title}"><div><div class="meta">${p.venue}</div><h3>${p.title}</h3><p>${p.text}</p><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div><div class="pub-actions">${p.links.pdf&&p.links.pdf!=="#"?`<a class="btn" href="${p.links.pdf}" target="_blank">📄 PDF</a>`:""}${p.links.code&&p.links.code!=="#"?`<a class="btn" href="${p.links.code}" target="_blank">💻 Code</a>`:""}</div></div>`;$("#publicationsList").appendChild(c);});}
+    function renderOutreach(){outreach.forEach(o=>{const c=mk("article","mini-card");c.innerHTML=`<div class="meta">${o.meta}</div><h3>${o.title}</h3><p>${o.text}</p>`;$("#outreachGrid").appendChild(c);});}
+    renderChips();renderPortfolio();renderResearch();renderSkills();renderExperience();renderPublications();renderOutreach();$("#year").textContent=new Date().getFullYear();
   </script>
-
-  <!-- Optional: Google Analytics (replace G-XXXX) -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XXXX');
-  </script>
-  -->
-
-  <!-- SEO: Structured data for Person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Dr. Inder Pal SINGH",
-    "url": "https://yourusername.github.io",
-    "jobTitle": "Researcher / Engineer",
-    "affiliation": {"@type":"Organization","name":"Your Institution"},
-    "email": "mailto:you@university.edu",
-    "sameAs": [
-      "https://github.com/yourusername",
-      "https://scholar.google.com/citations?user=...",
-      "https://www.linkedin.com/in/.../"
-    ]
-  }
-  </script>
-  
-
 </body>
 </html>
